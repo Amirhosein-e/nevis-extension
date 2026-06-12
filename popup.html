@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="header-icon">
+        <!-- تصویر لوگو به جای آیکون SVG -->
+        <img src="icons/nevis-logo.png" alt="لوگو نویس" class="header-logo-img">
+      </div>
+
+      <div class="header-text">
+        <h1>نویس</h1>
+        <p>فونت دلخواه خود را انتخاب کنید</p>
+      </div>
+    </header>
+
+    <!-- Section Label -->
+    <div class="section-label">فونت‌های فارسی</div>
+
+    <!-- Font List -->
+    <main>
+
+      <div class="font-item" data-font="Vazirmatn">
+        <div class="font-preview">
+          <div class="font-info">
+            <span class="font-name">وزیرمتن</span>
+          </div>
+        </div>
+        <label class="toggle" for="toggle-vazirmatn">
+          <input type="checkbox" id="toggle-vazirmatn" class="toggle-input" data-font="Vazirmatn">
+          <span class="toggle-track">
+            <span class="toggle-thumb">
+              <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <div class="font-item" data-font="Shabnam">
+        <div class="font-preview">
+          <div class="font-info">
+            <span class="font-name">شبنم</span>
+          </div>
+        </div>
+        <label class="toggle" for="toggle-shabnam">
+          <input type="checkbox" id="toggle-shabnam" class="toggle-input" data-font="Shabnam">
+          <span class="toggle-track">
+            <span class="toggle-thumb">
+              <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <div class="font-item" data-font="Lalezar">
+        <div class="font-preview">
+          <div class="font-info">
+            <span class="font-name">لاله زار</span>
+          </div>
+        </div>
+        <label class="toggle" for="toggle-lalezar">
+          <input type="checkbox" id="toggle-lalezar" class="toggle-input" data-font="Lalezar">
+          <span class="toggle-track">
+            <span class="toggle-thumb">
+              <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <div class="font-item" data-font="Kara">
+        <div class="font-preview">
+          <div class="font-info">
+            <span class="font-name">کارا</span>
+          </div>
+        </div>
+        <label class="toggle" for="toggle-kara">
+          <input type="checkbox" id="toggle-kara" class="toggle-input" data-font="Kara">
+          <span class="toggle-track">
+            <span class="toggle-thumb">
+              <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <div class="font-item" data-font="Gandom">
+        <div class="font-preview">
+          <div class="font-info">
+            <span class="font-name">گندم</span>
+          </div>
+        </div>
+        <label class="toggle" for="toggle-gandom">
+          <input type="checkbox" id="toggle-gandom" class="toggle-input" data-font="Gandom">
+          <span class="toggle-track">
+            <span class="toggle-thumb">
+              <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+          </span>
+        </label>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <button id="reset-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+          <path d="M3 3v5h5"></path>
+        </svg>
+        بازنشانی 
+      </button>
+    </footer>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

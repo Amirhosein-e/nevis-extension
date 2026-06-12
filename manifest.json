@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Nevis",
+  "version": "1.0.0",
+  "description": "Change the typography of any website with beautiful Persian fonts.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/nevis-logo.png",
+      "48": "icons/nevis-logo.png",
+      "128": "icons/nevis-logo.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "fonts/*"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ], 
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+    
+  ],
+  "icons": {
+    "16": "icons/nevis-logo.png",
+    "48": "icons/nevis-logo.png",
+    "128": "icons/nevis-logo.png"
+  }
+}
