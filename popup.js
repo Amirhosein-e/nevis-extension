@@ -62,8 +62,10 @@ function getGandomCss() {
 }
 
 function getLalezarCss() {
-    const ttf = chrome.runtime.getURL('fonts/lalezar/Digi-Lalezar-Plus-Circle.ttf');
-    return `@font-face { font-family: 'Lalezar'; src: url('${ttf}') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }`;
+    const bold = chrome.runtime.getURL('fonts/lalezar/Digi-Lalezar-Plus-Circle.ttf');
+    const regular = chrome.runtime.getURL('fonts/lalezar/DigiLalezarPlus.ttf');
+    return `@font-face { font-family: 'Lalezar'; src: url('${regular}') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+            @font-face { font-family: 'Lalezar'; src: url('${bold}') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }`;
 }
 
 function getKaraCss(){
