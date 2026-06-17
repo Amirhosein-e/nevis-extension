@@ -4,56 +4,17 @@ function getVazirCss() {
   const light = chrome.runtime.getURL('fonts/vazir/Vazir-Light.woff2');
   const medium = chrome.runtime.getURL('fonts/vazir/Vazir-Medium.woff2');
   const thin = chrome.runtime.getURL('fonts/vazir/Vazir-Thin.woff2');
-
   return `
-@font-face {
-  font-family: 'Vazirmatn';
-  src: url('${regular}') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Vazirmatn';
-  src: url('${bold}') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Vazirmatn';
-  src: url('${light}') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Vazirmatn';
-  src: url('${medium}') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Vazirmatn';
-  src: url('${thin}') format('woff2');
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}`;
+@font-face { font-family: 'Vazirmatn'; src: url('${regular}') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Vazirmatn'; src: url('${bold}') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Vazirmatn'; src: url('${light}') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Vazirmatn'; src: url('${medium}') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Vazirmatn'; src: url('${thin}') format('woff2'); font-weight: 100; font-style: normal; font-display: swap; }`;
 }
 
 function getShabnamCss() {
   const woff2 = chrome.runtime.getURL('fonts/shabnam/Shabnam.woff2');
-
-  return `
-@font-face {
-  font-family: 'Shabnam';
-  src: url('${woff2}') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}`;
+  return `@font-face { font-family: 'Shabnam'; src: url('${woff2}') format('woff2'); font-weight: normal; font-style: normal; font-display: swap; }`;
 }
 
 function getGandomCss() {
@@ -72,28 +33,17 @@ function getKaraCss(){
     const regular = chrome.runtime.getURL('fonts/kara/Kara-Regular.ttf');
     const semiBold = chrome.runtime.getURL('fonts/kara/Kara-SemiBold.ttf');
     const light = chrome.runtime.getURL('fonts/kara/Kara-Light.ttf');
-
     return `@font-face { font-family: 'Kara'; src: url('${regular}') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
             @font-face { font-family: 'Kara'; src: url('${semiBold}') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
             @font-face { font-family: 'Kara'; src: url('${light}') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }`;
 }
 
 const POPUP_FONTS = {
-  Vazirmatn: {
-    get fontFaceCss() { return getVazirCss(); }
-  },
-  Shabnam: {
-    get fontFaceCss() { return getShabnamCss(); }
-  },
-  Lalezar: {
-    get fontFaceCss() { return getLalezarCss(); }
-  },
-  Kara: {
-    get fontFaceCss() { return getKaraCss(); }
-  },
-  Gandom: {
-    get fontFaceCss() { return getGandomCss(); }
-  }
+  Vazirmatn: { get fontFaceCss() { return getVazirCss(); } },
+  Shabnam: { get fontFaceCss() { return getShabnamCss(); } },
+  Lalezar: { get fontFaceCss() { return getLalezarCss(); } },
+  Kara: { get fontFaceCss() { return getKaraCss(); } },
+  Gandom: { get fontFaceCss() { return getGandomCss(); } }
 };
 
 const POPUP_FONT_ELEMENTS = [
@@ -105,22 +55,13 @@ const POPUP_FONT_ELEMENTS = [
 ];
 
 function buildOverrideCss(fontName) {
-  const selectors = POPUP_FONT_ELEMENTS.map(tag => {
-    return `${tag}:not([class*="symbol"])`;
-  });
-
-  return `${selectors.join(',\n')} {
-  font-family: '${fontName}', sans-serif !important;
-}`;
+  const selectors = POPUP_FONT_ELEMENTS.map(tag => `${tag}:not([class*="symbol"])`);
+  return `${selectors.join(',\n')} { font-family: '${fontName}', sans-serif !important; }`;
 }
 
 function isInjectableUrl(url) {
   if (!url) return false;
-  return (
-    url.startsWith('http://') ||
-    url.startsWith('https://') ||
-    url.startsWith('file://')
-  );
+  return url.startsWith('http://') || url.startsWith('https://') || url.startsWith('file://');
 }
 
 async function sendMessageToTab(tab, message) {
@@ -144,62 +85,78 @@ async function sendMessageToTab(tab, message) {
   }
 }
 
-let currentFont = null;
+// عناصر DOM
+const fontSelect = document.getElementById('font-select');
+const rtlToggle = document.getElementById('toggle-rtl');
+const resetBtn = document.getElementById('reset-btn');
 
-function updateToggles(activeFont) {
-  document.querySelectorAll('.toggle-input').forEach(input => {
-    input.checked = input.dataset.font === activeFont;
-  });
-}
-
-async function handleToggle(input) {
-  const fontName = input.dataset.font;
-  const isChecked = input.checked;
-
-  if (isChecked) {
-    currentFont = fontName;
+// هندل تغییرات فونت (Select Box)
+async function handleFontChange(e) {
+  const fontName = e.target.value;
+  
+  if (fontName && POPUP_FONTS[fontName]) {
     await chrome.storage.local.set({ activeFont: fontName });
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (tab) {
+      await sendMessageToTab(tab, {
+        action: 'applyFont',
+        fontName: fontName,
+        fontFaceCss: POPUP_FONTS[fontName].fontFaceCss,
+        overrideCss: buildOverrideCss(fontName)
+      });
+    }
   } else {
-    currentFont = null;
+    // اگر «بدون تغییر» انتخاب شود
     await chrome.storage.local.remove('activeFont');
-  }
-
-  updateToggles(currentFont);
-
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  if (!tab) return;
-
-  if (currentFont) {
-    await sendMessageToTab(tab, {
-      action: 'applyFont',
-      fontName: currentFont,
-      fontFaceCss: POPUP_FONTS[currentFont].fontFaceCss,
-      overrideCss: buildOverrideCss(currentFont)
-    });
-  } else {
-    await sendMessageToTab(tab, { action: 'removeFont' });
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (tab) {
+      await sendMessageToTab(tab, { action: 'removeFont' });
+    }
   }
 }
 
+// هندل تغییرات سوییچ RTL
+async function handleRtlToggle(e) {
+  const isActive = e.target.checked;
+  await chrome.storage.local.set({ isRTL: isActive });
+  
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (tab) {
+    await sendMessageToTab(tab, {
+      action: 'applyRTL',
+      isActive: isActive
+    });
+  }
+}
+
+// بازنشانی کلی
 async function handleReset() {
-  currentFont = null;
-  await chrome.storage.local.remove('activeFont');
-  updateToggles(null);
+  fontSelect.value = "";
+  rtlToggle.checked = false;
+  
+  await chrome.storage.local.remove(['activeFont', 'isRTL']);
 
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   if (tab) {
     await sendMessageToTab(tab, { action: 'removeFont' });
+    await sendMessageToTab(tab, { action: 'applyRTL', isActive: false });
   }
 }
 
+// مقداردهی اولیه هنگام باز شدن پاپ‌آپ
 document.addEventListener('DOMContentLoaded', async () => {
-  const { activeFont } = await chrome.storage.local.get('activeFont');
-  currentFont = activeFont || null;
-  updateToggles(currentFont);
+  const { activeFont, isRTL } = await chrome.storage.local.get(['activeFont', 'isRTL']);
+  
+  if (activeFont && POPUP_FONTS[activeFont]) {
+    fontSelect.value = activeFont;
+  } else {
+    fontSelect.value = "";
+  }
 
-  document.querySelectorAll('.toggle-input').forEach(input => {
-    input.addEventListener('change', () => handleToggle(input));
-  });
+  rtlToggle.checked = !!isRTL;
 
-  document.getElementById('reset-btn').addEventListener('click', handleReset);
+  // Event Listeners
+  fontSelect.addEventListener('change', handleFontChange);
+  rtlToggle.addEventListener('change', handleRtlToggle);
+  resetBtn.addEventListener('click', handleReset);
 });

@@ -1,5 +1,6 @@
 const FONTFACE_STYLE_ID = 'font-changer-fontface';
 const OVERRIDE_STYLE_ID = 'font-changer-override';
+const RTL_STYLE_ID = 'font-changer-rtl'; // شناسه جدید برای استایل RTL
 
 function getVazirCss() {
   const regular = chrome.runtime.getURL('fonts/vazir/Vazir.woff2');
@@ -18,8 +19,7 @@ function getVazirCss() {
 
 function getShabnamCss() {
   const woff2 = chrome.runtime.getURL('fonts/shabnam/Shabnam.woff2');
-  return `
-@font-face { font-family: 'Shabnam'; src: url('${woff2}') format('woff2'); font-weight: normal; font-style: normal; font-display: swap; }`;
+  return `@font-face { font-family: 'Shabnam'; src: url('${woff2}') format('woff2'); font-weight: normal; font-style: normal; font-display: swap; }`;
 }
 
 function getGandomCss() {
@@ -89,6 +89,73 @@ function removeFont() {
   removeStyleElement(OVERRIDE_STYLE_ID);
 }
 
+// تابع جدید برای اعمال و حذف حالت راست‌چین
+function applyRTL(isActive) {
+  if (isActive) {
+    const rtlCss = `
+      ms-chat-turn {
+        direction: rtl !important;
+        text-align: right !important;
+      }
+      ms-chat-turn ms-code-block, ms-code-block {
+        direction: ltr !important;
+        text-align: left !important;
+      }
+      textarea {
+        direction: ltr !important;
+        text-align: left !important;
+      }
+      textarea[formcontrolname="promptText"]{
+        text-align: right !important;
+        direction: rtl !important;
+      }
+      .katex-display{
+        text-align: left !important;
+        direction: ltr !important;
+      }
+
+      /* ─── DeepSeek ──── */
+      ds-message div:not(.ds-markdown) {
+        direction: rtl !important;
+        text-align: right !important;
+      }
+      .ds-message .ds-markdown{
+        direction: ltr !important;
+        text-align: left !important;
+      }
+      .md-code-block{
+        text-align: left !important;
+        direction: ltr !important;
+      }
+      .ds-markdown-paragraph:has(.katex) {
+        text-align: left !important;
+        direction: ltr !important;
+      }
+      textarea.ds-scroll-area[placeholder="Message DeepSeek"][name="search"]{
+        direction: rtl !important;
+        text-align: right !important;
+      }
+
+      /* ─── Chatgpt ──── */
+      .text-base{
+        direction: rtl !important;
+        text-align: right !important;
+      }
+      .katex-display{
+        text-align: left !important;
+        direction: ltr !important;
+      }
+      #prompt-textarea p{
+        direction: rtl !important;
+        text-align: right !important;
+      }
+    `;
+    getStyleElement(RTL_STYLE_ID).textContent = rtlCss;
+  } else {
+    removeStyleElement(RTL_STYLE_ID);
+  }
+}
+
 if (!window.__fontChangerListenerRegistered) {
   window.__fontChangerListenerRegistered = true;
 
@@ -100,6 +167,9 @@ if (!window.__fontChangerListenerRegistered) {
       } else if (message.action === 'removeFont') {
         removeFont();
         sendResponse({ success: true });
+      } else if (message.action === 'applyRTL') { // هندل کردن اکشن راست‌چین
+        applyRTL(message.isActive);
+        sendResponse({ success: true });
       }
     } catch (err) {
       sendResponse({ success: false, error: err.message });
@@ -110,12 +180,15 @@ if (!window.__fontChangerListenerRegistered) {
 
 async function init() {
   try {
-    const { activeFont } = await chrome.storage.local.get('activeFont');
+    const { activeFont, isRTL } = await chrome.storage.local.get(['activeFont', 'isRTL']);
     if (activeFont && FONT_CONFIG[activeFont]) {
       applyFont(
         FONT_CONFIG[activeFont].fontFaceCss,
         buildOverrideCss(activeFont)
       );
+    }
+    if (isRTL) {
+      applyRTL(true);
     }
   } catch (err) {
     console.warn('Font Changer init error:', err.message);
