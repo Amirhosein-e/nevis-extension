@@ -115,18 +115,26 @@ function applyRTL(isActive) {
       }
 
       /* ─── DeepSeek ──── */
-      ds-message div:not(.ds-markdown) {
+      
+      .ds-markdown,
+      .ds-assistant-message-main-content {
         direction: rtl !important;
         text-align: right !important;
       }
-      .ds-message .ds-markdown{
+
+      .ds-message > div:first-child {
+        direction: rtl !important;
+        text-align: right !important;
+      }
+
+      /* بلاک‌های کد - LTR */
+      .md-code-block,
+      .ds-code-block,
+      pre {
         direction: ltr !important;
         text-align: left !important;
       }
-      .md-code-block{
-        text-align: left !important;
-        direction: ltr !important;
-      }
+
       .ds-markdown-paragraph:has(.katex) {
         text-align: left !important;
         direction: ltr !important;
