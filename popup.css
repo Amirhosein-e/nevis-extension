@@ -27,7 +27,7 @@
   --text-secondary: #94a3b8;
   
   /* Accent colors */
-  --accent-primary: #6366f1;
+  --accent-primary: #0e75d4;
   --accent-glow: rgba(99, 102, 241, 0.25);
   
   /* System */
@@ -44,6 +44,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+*::selection{
+  background-color: #039bf3a6;
+  color: #ffffff;
 }
 
 body {
