@@ -68,13 +68,11 @@ body {
   min-height: 290px;
 }
 
-/* ─── header design ────────────────────────────────── */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  /* linear-gradient(341deg, black, #173783); */
   background: linear-gradient(160deg, #0749b5 0%, rgba(9, 13, 22, 0.95) 100%);
   backdrop-filter: blur(8px);
 }
@@ -363,6 +361,10 @@ main {
 .toggle-switch:active .toggle-track .toggle-thumb {
   width: 22px;
 }
+.toggle-switch:active .toggle-input:checked + .toggle-track .toggle-thumb {
+  width: 22px;
+  transform: translateX(-17px);
+}
 
 /* ─── footer ───────────────────────────────────────── */
 footer {
@@ -427,7 +429,6 @@ footer {
   }
 }
 
-/* ─── accordion trigger (جایگزین select) ──────────── */
 .accordion-trigger {
   width: 100%;
   display: flex;
@@ -451,7 +452,7 @@ footer {
 }
 
 .accordion-trigger.open {
-box-shadow: rgb(26 50 183 / 22%) 0px 8px 14px;
+  box-shadow: rgb(26 50 183 / 22%) 0px 8px 14px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -466,7 +467,6 @@ box-shadow: rgb(26 50 183 / 22%) 0px 8px 14px;
   transform: rotate(180deg);
 }
 
-/* ─── accordion panel ──────────────────────────────── */
 .accordion-panel {
   max-height: 0;
   overflow: hidden;
@@ -532,7 +532,6 @@ box-shadow: rgb(26 50 183 / 22%) 0px 8px 14px;
   }
 }
 
-/* ─── دکمه بازگشت ──────────────────────────────────── */
 .back-btn {
   display: flex;
   align-items: center;
@@ -558,7 +557,6 @@ box-shadow: rgb(26 50 183 / 22%) 0px 8px 14px;
   transform: scale(0.93);
 }
 
-/* ─── ناحیه آپلود ──────────────────────────────────── */
 .upload-zone {
   border: 1.5px dashed rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-sm);
@@ -696,7 +694,6 @@ box-shadow: rgb(26 50 183 / 22%) 0px 8px 14px;
   box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
-/* ─── پیام خطا/موفقیت ─────────────────────────────── */
 .form-message {
   font-size: 10px;
   min-height: 14px;
@@ -711,7 +708,6 @@ box-shadow: rgb(26 50 183 / 22%) 0px 8px 14px;
   color: #10b981;
 }
 
-/* ─── دکمه تأیید افزودن ────────────────────────────── */
 .add-confirm-btn {
   width: 100%;
   display: flex;
@@ -748,7 +744,6 @@ box-shadow: rgb(26 50 183 / 22%) 0px 8px 14px;
   box-shadow: none;
 }
 
-/* ─── آیتم سفارشی در لیست فونت ────────────────────── */
 .font-item--add {
   display: flex;
   align-items: center;
@@ -763,7 +758,6 @@ box-shadow: rgb(26 50 183 / 22%) 0px 8px 14px;
   padding-right: 18px;
 }
 
-/* ─── آیتم فونت سفارشی با دکمه حذف ────────────────── */
 .font-item--custom {
   display: flex;
   align-items: center;

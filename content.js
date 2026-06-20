@@ -61,7 +61,8 @@ const FONT_ELEMENTS = [
 // ─── توابع کمکی DOM و اعمال استایل ──────────────────────────────────────────
 
 function buildOverrideCss(fontName) {
-  const selectors = FONT_ELEMENTS.map(tag => `${tag}:not([class*="symbol"])`);
+  const selectors = FONT_ELEMENTS.map(tag => `${tag}:not([class*="symbol"]):not([class="katex"])`);
+
   return `${selectors.join(',\n')} { font-family: '${fontName}', sans-serif !important; }`;
 }
 
@@ -155,6 +156,26 @@ function applyRTL(isActive) {
     }
   `;
 
+  const ClaudeRtlCss = `
+    div[data-user-message-bubble="true"]{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+    .contents > div:first-child{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+    .katex-display{
+      direction: ltr !important;
+      text-align: center !important;
+    }
+    .katex:not(.katex-display .katex) {
+      direction: ltr !important;
+      text-align: left !important;
+      unicode-bidi: embed;
+    }
+  `;
+
   const hostname = window.location.hostname;
 
   if (hostname.endsWith('deepseek.com')) {
@@ -166,9 +187,9 @@ function applyRTL(isActive) {
   else if (hostname === 'aistudio.google.com') {
     getStyleElement(RTL_STYLE_ID).textContent = AiStudioRtlCss;
   }
-  // else if (hostname.endsWith('claude.ai')) {
-  //   getStyleElement(RTL_STYLE_ID).textContent = ClaudeRtlCss;
-  // }
+  else if (hostname.endsWith('claude.ai')) {
+    getStyleElement(RTL_STYLE_ID).textContent = ClaudeRtlCss;
+  }
   // else if (hostname.endsWith('perplexity.ai')) {
   //   getStyleElement(RTL_STYLE_ID).textContent = PerplexityRtlCss;
   // }
