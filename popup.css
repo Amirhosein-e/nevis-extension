@@ -27,7 +27,7 @@
   --text-secondary: #94a3b8;
   
   /* Accent colors */
-  --accent-primary: #0e75d4;
+  --accent-primary: #5aa2fa;
   --accent-glow: rgba(99, 102, 241, 0.25);
   
   /* System */
@@ -47,12 +47,11 @@
 }
 
 *::selection{
-  background-color: #039bf3a6;
-  color: #ffffff;
+  background-color: #039bf39a;
 }
 
 body {
-  width: 320px;
+  width: 325px;
   background-color: var(--bg-dark);
   background-image: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 75%);
   color: var(--text-primary);
@@ -76,7 +75,7 @@ header {
   justify-content: space-between;
   padding: 20px;
   /* linear-gradient(341deg, black, #173783); */
-  background: linear-gradient(160deg, #06398d 0%, rgba(9, 13, 22, 0.95) 100%);
+  background: linear-gradient(160deg, #0749b5 0%, rgba(9, 13, 22, 0.95) 100%);
   backdrop-filter: blur(8px);
 }
 
@@ -169,7 +168,7 @@ main {
   margin-right: 10px;
   margin-bottom: -8px;
 }
-.card-title-group1 > label{
+.card-title-group1 > span{
   font-size: 14px;
 }
 
@@ -177,10 +176,17 @@ main {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: -8px;
+}
+
+.card-title-group3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: large;
 }
 
-.card-title-group2 > span{
+.card-title-group3 > span{
   font-size: 13px;
 }
 
@@ -341,7 +347,7 @@ main {
 .toggle-input:checked + .toggle-track {
   background: linear-gradient(336deg, #25b3ff 0%, #0e61b3 100%);
   border-color: transparent;
-  box-shadow: 1px -1px 12px 1px rgb(13 108 183 / 78%);
+  box-shadow: 2px 2px 10px 0px rgb(13 108 183 / 86%);
 }
 
 .toggle-input:checked + .toggle-track .toggle-thumb {
@@ -419,4 +425,376 @@ footer {
     opacity: 0.6;
     transform: scale(0.9);
   }
+}
+
+/* ─── accordion trigger (جایگزین select) ──────────── */
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10, 11, 16, 0.8);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  user-select: none;
+}
+
+.accordion-trigger:hover {
+  background: rgba(15, 17, 26, 0.95);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.accordion-trigger.open {
+box-shadow: rgb(26 50 183 / 22%) 0px 8px 14px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.accordion-arrow {
+  color: var(--text-secondary);
+  transition: transform var(--transition-smooth);
+  flex-shrink: 0;
+}
+
+.accordion-trigger.open .accordion-arrow {
+  transform: rotate(180deg);
+}
+
+/* ─── accordion panel ──────────────────────────────── */
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.2s ease;
+  opacity: 0;
+  background: rgba(10, 11, 16, 0.95);
+  border-bottom-left-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+  box-shadow: rgb(26 50 183 / 22%) 0px 8px 14px;
+}
+
+.accordion-panel.open {
+  max-height: 2500px;
+  opacity: 1;
+}
+
+/* ─── font list inside accordion ───────────────────── */
+.font-list {
+  list-style: none;
+}
+
+.font-item {
+  padding: 8px 14px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  border-right: 2px solid transparent;
+}
+
+.font-item:hover {
+  background: rgba(99, 102, 241, 0.08);
+  color: var(--text-primary);
+  /* border-right-color: var(--accent-primary); */
+  padding-right: 18px;
+}
+
+.font-item.active {
+  color: var(--accent-primary);
+  background: rgba(14, 117, 212, 0.1);
+  border-right-color: var(--accent-primary);
+  font-weight: 700;
+}
+
+/* ─── کارت افزودن فونت ─────────────────────────────── */
+
+.add-font-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: slideIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── دکمه بازگشت ──────────────────────────────────── */
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  flex-shrink: 0;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+}
+
+.back-btn:active {
+  transform: scale(0.93);
+}
+
+/* ─── ناحیه آپلود ──────────────────────────────────── */
+.upload-zone {
+  border: 1.5px dashed rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  background: rgba(10, 11, 16, 0.6);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  overflow: hidden;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-zone:hover {
+  border-color: rgba(14, 117, 212, 0.45);
+  background: rgba(14, 117, 212, 0.05);
+}
+
+.upload-zone.drag-over {
+  border-color: var(--accent-primary);
+  background: rgba(14, 117, 212, 0.1);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.upload-zone.has-file {
+  border-style: solid;
+  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.05);
+  cursor: default;
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 14px 12px;
+  width: 100%;
+  text-align: center;
+}
+
+.upload-icon {
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+  transition: color var(--transition-smooth);
+}
+
+.upload-icon--success {
+  color: #10b981;
+}
+
+.upload-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.upload-filename {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 12px;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+.upload-sub {
+  font-size: 10px;
+  color: rgba(148, 163, 184, 0.5);
+}
+
+.upload-formats {
+  font-size: 9px;
+  color: rgba(148, 163, 184, 0.35);
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+.upload-change-btn {
+  font-size: 10px;
+  color: var(--accent-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: background var(--transition-smooth);
+  margin-top: 2px;
+}
+
+.upload-change-btn:hover {
+  background: rgba(14, 117, 212, 0.12);
+}
+
+/* ─── اینپوت نام فونت ──────────────────────────────── */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-label {
+  font-size: 10px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.font-name-input {
+  width: 100%;
+  background: rgba(10, 11, 16, 0.8);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: all var(--transition-smooth);
+}
+
+.font-name-input::placeholder {
+  color: rgba(148, 163, 184, 0.35);
+}
+
+.font-name-input:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.font-name-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ─── پیام خطا/موفقیت ─────────────────────────────── */
+.form-message {
+  font-size: 10px;
+  min-height: 14px;
+  transition: all var(--transition-smooth);
+}
+
+.form-message.error {
+  color: #f87171;
+}
+
+.form-message.success {
+  color: #10b981;
+}
+
+/* ─── دکمه تأیید افزودن ────────────────────────────── */
+.add-confirm-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #1a6fd4 0%, #0e4fa0 100%);
+  border: 1px solid rgba(14, 117, 212, 0.4);
+  color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  margin-top: 2px;
+}
+
+.add-confirm-btn:hover {
+  background: linear-gradient(135deg, #1e7be0 0%, #1259b5 100%);
+  /* box-shadow: 0 4px 14px rgba(14, 117, 212, 0.35);
+  transform: translateY(-1px); */
+}
+
+.add-confirm-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.add-confirm-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ─── آیتم سفارشی در لیست فونت ────────────────────── */
+.font-item--add {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--accent-primary);
+  border-top: 1px solid var(--border-light);
+}
+
+.font-item--add:hover {
+  background: rgba(14, 117, 212, 0.08);
+  color: #4da6ff;
+  padding-right: 18px;
+}
+
+/* ─── آیتم فونت سفارشی با دکمه حذف ────────────────── */
+.font-item--custom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
+}
+
+.font-item--custom .font-item-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.font-item-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+  color: rgba(148, 163, 184, 0.3);
+  cursor: pointer;
+  border-radius: 4px;
+  flex-shrink: 0;
+  transition: all var(--transition-smooth);
+  padding: 0;
+}
+
+.font-item-delete:hover {
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.1);
 }

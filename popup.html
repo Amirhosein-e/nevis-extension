@@ -22,12 +22,12 @@
     </header>
 
     <main>
-      <section class="control-card">
+      <!-- کارت اصلی فونت -->
+      <section class="control-card" id="font-card">
         <div class="card-header">
           <div class="card-title-group1">
-            <label for="font-select" class="card-title" id="font-title">فونت</label>
+            <span class="card-title">فونت</span>
           </div>
-          
           <button id="reset-btn" aria-label="پیش‌فرض" title="حالت پیش‌فرض">
             <svg class="reset-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
               stroke-linecap="round" stroke-linejoin="round">
@@ -37,29 +37,96 @@
             <span>پیش‌فرض</span>
           </button>
         </div>
-        
-        <div class="select-wrapper">
-          <select id="font-select" class="custom-select">
-            <option value="">بدون تغییر (پیش‌فرض)</option>
-            <option value="Vazirmatn">وزیرمتن</option>
-            <option value="Shabnam">شبنم</option>
-            <option value="Lalezar">لاله زار</option>
-            <option value="Kara">کارا</option>
-            <option value="Gandom">گندم</option>
-          </select>
-          <div class="select-arrow">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+
+        <div class="accordion-trigger" id="accordion-trigger">
+          <span id="selected-font-label">بدون تغییر (پیش‌فرض)</span>
+          <svg class="accordion-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+
+        <div class="accordion-panel" id="accordion-panel">
+          <ul class="font-list" id="font-list">
+            <li class="font-item" data-value="">بدون تغییر (پیش‌فرض)</li>
+            <li class="font-item" data-value="Vazirmatn">وزیرمتن</li>
+            <li class="font-item" data-value="Shabnam">شبنم</li>
+            <li class="font-item" data-value="Lalezar">لاله‌زار</li>
+            <li class="font-item" data-value="Kara">کارا</li>
+            <li class="font-item" data-value="Gandom">گندم</li>
+            <li class="font-item font-item--add" id="add-font-btn" data-value="__add__">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              افزودن فونت
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="control-card add-font-card" id="add-font-card" style="display:none;">
+        <div class="card-header">
+          <div class="card-title-group2">
+            <button class="back-btn" id="back-btn" title="بازگشت">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="10 6 16 12 10 18"></polyline>
+              </svg>
+            </button>
+            <span class="card-title">افزودن فونت</span>
           </div>
         </div>
+
+        <!-- آپلود فایل -->
+        <div class="upload-zone" id="upload-zone">
+          <input type="file" id="font-file-input" accept=".ttf,.woff,.woff2,.otf" hidden />
+          <div class="upload-content" id="upload-content">
+            <span class="upload-label">فایل فونت را انتخاب کنید</span>
+            <span class="upload-formats">TTF · WOFF · WOFF2 · OTF</span>
+          </div>
+          <div class="upload-content upload-selected" id="upload-selected" style="display:none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" class="upload-icon upload-icon--success">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            <span class="upload-label upload-filename" id="upload-filename"></span>
+            <button class="upload-change-btn" id="upload-change-btn">تغییر</button>
+          </div>
+        </div>
+
+        <!-- نام فونت -->
+        <div class="input-group">
+          <label class="input-label" for="font-name-input">نام فونت</label>
+          <input
+            type="text"
+            id="font-name-input"
+            class="font-name-input"
+            placeholder="فونت من"
+            maxlength="32"
+            dir="rtl"
+          />
+        </div>
+
+        <!-- پیام خطا/موفقیت -->
+        <div class="form-message" id="form-message"></div>
+
+        <!-- دکمه افزودن -->
+        <button class="add-confirm-btn" id="add-confirm-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          افزودن به لیست
+        </button>
       </section>
 
       <section class="control-card row-card">
         <div class="card-info">
-          <div class="card-title-group2">
-            <span class="card-title">راست‌چین  (RTL)</span>
+          <div class="card-title-group3">
+            <span class="card-title">راست‌چین (RTL)</span>
           </div>
         </div>
         
