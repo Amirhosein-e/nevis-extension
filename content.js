@@ -58,10 +58,66 @@ const FONT_ELEMENTS = [
   'pre', 'option', 'dt', 'dd', 'figcaption', 'mark', 'small', 'strong'
 ];
 
+// ─── تنظیمات اختصاصی سایت‌ها برای اعمال فونت ───────────────────────────────
+
+const SITE_FONT_SETTINGS = {
+  'deepseek.com': {
+    enabled: true,
+    exclude: ['.katex *', '.katex-display *']
+  },
+  'chatgpt.com': {
+    enabled: true,
+    exclude: ['pre', 'code', '.code-block__code', '[class*="symbol"]']
+  },
+  'aistudio.google.com': {
+    enabled: true,
+    exclude: ['ms-code-block *', '.katex *', '.katex-display *', '[class*="symbol"]', '.inline-code', '.console-right-panel *', 'ms-differ *']
+  },
+  'claude.ai': {
+    enabled: true,
+    exclude: ['span[data-cds="Icon"]', '.katex *', '.katex-display *', '.code-block__code *', 'div[data-skill-file-viewer] *']
+  },
+  'qwen.ai': {
+    enabled: true,
+    exclude: ['.katex *', '.qwen-markdown-code *', 'qwen-markdown-codespan']
+  }
+};
+
+// تابع کمکی برای دریافت تنظیمات فونت سایت فعلی
+function getSiteFontSettings() {
+  const hostname = window.location.hostname;
+  const matchedKey = Object.keys(SITE_FONT_SETTINGS).find(domain => 
+    hostname.endsWith(domain) || hostname === domain
+  );
+
+  if (matchedKey) {
+    return SITE_FONT_SETTINGS[matchedKey];
+  }
+
+  // تنظیمات پیش‌فرض برای سایت‌هایی که در لیست بالا تعریف نشده‌اند.
+  // اگر می‌خواهید فونت فقط در سایت‌های مشخص‌شده فعال شود، مقدار enabled را false قرار دهید.
+  return {
+    enabled: true,
+    exclude: ['[class*="symbol"]', '.katex']
+  };
+}
+
 // ─── توابع کمکی DOM و اعمال استایل ──────────────────────────────────────────
 
 function buildOverrideCss(fontName) {
-  const selectors = FONT_ELEMENTS.map(tag => `${tag}:not([class*="symbol"]):not([class="katex"])`);
+  const settings = getSiteFontSettings();
+  
+  // اگر اعمال فونت برای این سایت غیرفعال شده باشد، رشته خالی بازگردانده می‌شود
+  if (!settings.enabled) {
+    return '';
+  }
+
+  // ساخت زنجیره‌ای از استثنائات به صورت :not()
+  const exclusionString = settings.exclude && settings.exclude.length > 0
+    ? settings.exclude.map(selector => `:not(${selector})`).join('')
+    : '';
+
+  const selectors = FONT_ELEMENTS.map(tag => `${tag}${exclusionString}`);
 
   return `${selectors.join(',\n')} { font-family: '${fontName}', sans-serif !important; }`;
 }
@@ -82,9 +138,14 @@ function removeStyleElement(id) {
 }
 
 function applyFont(fontFaceCss, overrideCss) {
-  if (!fontFaceCss || !overrideCss) return;
+  if (!fontFaceCss) return;
   getStyleElement(FONTFACE_STYLE_ID).textContent = fontFaceCss;
-  getStyleElement(OVERRIDE_STYLE_ID).textContent = overrideCss;
+  
+  if (overrideCss) {
+    getStyleElement(OVERRIDE_STYLE_ID).textContent = overrideCss;
+  } else {
+    removeStyleElement(OVERRIDE_STYLE_ID);
+  }
 }
 
 function removeFont() {
@@ -111,10 +172,14 @@ function applyRTL(isActive) {
       direction: ltr !important;
       text-align: left !important;
     }
-    .katex {
-      text-align: center !important;
+    .katex-display{
       direction: ltr !important;
-      unicode-bidi: embed; 
+      text-align: center !important;
+    }
+    .katex:not(.katex-display .katex) {
+      direction: ltr !important;
+      text-align: left !important;
+      unicode-bidi: embed;
     }
     textarea.ds-scroll-area[placeholder="Message DeepSeek"][name="search"] {
       direction: rtl !important;
@@ -131,16 +196,32 @@ function applyRTL(isActive) {
       direction: ltr !important;
       text-align: left !important;
     }
-    textarea {
-      direction: ltr !important;
-      text-align: left !important;
-    }
     textarea[formcontrolname="promptText"] {
       text-align: right !important;
       direction: rtl !important;
     }
-    .katex-display {
+    textarea.cdk-textarea-autosize {
+      text-align: right !important;
+      direction: rtl !important;
+    }
+    div.autocomplete-mirror{
+      text-align: right !important;
+      direction: rtl !important;
+    }
+    ms-console-turn > div{
+      text-align: right !important;
+      direction: rtl !important;
+    }
+    .katex-display{
+      direction: ltr !important;
+      text-align: center !important;
+    }
+    .katex:not(.katex-display .katex) {
+      direction: ltr !important;
       text-align: left !important;
+      unicode-bidi: embed;
+    }
+    .inline-code{
       direction: ltr !important;
     }
   `;
@@ -161,7 +242,7 @@ function applyRTL(isActive) {
       direction: rtl !important;
       text-align: right !important;
     }
-    .contents > div:first-child{
+    .standard-markdown{
       direction: rtl !important;
       text-align: right !important;
     }
@@ -174,7 +255,40 @@ function applyRTL(isActive) {
       text-align: left !important;
       unicode-bidi: embed;
     }
+    .code-block__code{
+      direction: ltr !important;
+      text-align: left !important;
+    }
+    .code-block__code{
+      direction: ltr !important;
+      text-align: left !important;
+    }
+    div[aria-label*="code"] {
+      direction: ltr !important;
+      text-align: left !important;
+    }
   `;
+
+  const QwenRtlCss = `
+    .response-message-content{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+    .katex:not(.katex-display .katex) {
+      direction: ltr !important;
+      text-align: left !important;
+      unicode-bidi: embed;
+    }
+    .qwen-markdown-code, .qwen-markdown-codespan{
+      direction: ltr !important;
+      text-align: left !important;
+    }
+    .qwen-markdown-table-thead-tr-th{
+      direction: rtl !important;
+      text-align: center !important;
+    }
+  `;
+
 
   const hostname = window.location.hostname;
 
@@ -190,13 +304,11 @@ function applyRTL(isActive) {
   else if (hostname.endsWith('claude.ai')) {
     getStyleElement(RTL_STYLE_ID).textContent = ClaudeRtlCss;
   }
-  // else if (hostname.endsWith('perplexity.ai')) {
-  //   getStyleElement(RTL_STYLE_ID).textContent = PerplexityRtlCss;
-  // }
-  // else if (hostname === 'gemini.google.com') {
-  //   getStyleElement(RTL_STYLE_ID).textContent = GeminiRtlCss;
-  // }
+  else if (hostname.endsWith('qwen.ai')) {
+    getStyleElement(RTL_STYLE_ID).textContent = QwenRtlCss;
+  }
 }
+
 // ─── شنونده پیام‌ها و مقداردهی اولیه ──────────────────────────────────────────
 
 if (!window.__fontChangerListenerRegistered) {
@@ -205,7 +317,10 @@ if (!window.__fontChangerListenerRegistered) {
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     try {
       if (message.action === 'applyFont') {
-        applyFont(message.fontFaceCss, message.overrideCss);
+        // برای بازسازی صحیح CSS استثنائات در سمت مرورگر، از نام فونت فرستاده‌شده استفاده می‌شود
+        const fontName = message.fontName || 'Vazirmatn'; 
+        const overrideCss = buildOverrideCss(fontName);
+        applyFont(message.fontFaceCss, overrideCss);
         sendResponse({ success: true });
       } else if (message.action === 'removeFont') {
         removeFont();
