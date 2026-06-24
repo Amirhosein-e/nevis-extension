@@ -185,7 +185,23 @@ function applyRTL(isActive) {
       direction: rtl !important;
       text-align: right !important;
     }
-  `;
+    
+    .ds-markdown .ds-scroll-area {
+      direction: ltr !important; 
+      transform: translateX(80px);
+    }
+  
+    .ds-markdown .ds-scroll-area table {
+      direction: rtl !important;
+      width: max-content !important;
+      
+    }
+    
+    .ds-markdown th, .ds-markdown td {
+      direction: rtl !important;
+      text-align: right !important;
+    }
+`;
   
   const AiStudioRtlCss = `
     ms-chat-turn { 
@@ -227,11 +243,6 @@ function applyRTL(isActive) {
   `;
   
   const ChatgptRtlCss = `
-    .text-base { 
-      direction: rtl !important;
-      text-align: right !important;
-    }
-    #prompt-textarea p {
       direction: rtl !important;
       text-align: right !important; 
     }
@@ -287,6 +298,18 @@ function applyRTL(isActive) {
       direction: rtl !important;
       text-align: center !important;
     }
+    .qwen-markdown-table-thead-tr-th,
+    .qwen-markdown-table-tbody-tr-td {
+      border-right: none !important; 
+      border-left: 1px solid #e1e3ea !important; 
+    }
+
+    /*حذف خط چپ از اینو گذاشتم که آخرین ستون لبه بیرونی جدول خط اضافه نداشته باشه */
+    .qwen-markdown-table-thead-tr-th:last-child,
+    .qwen-markdown-table-tbody-tr-td:last-child {
+      border-left: none !important;
+    }
+
   `;
 
 
@@ -294,6 +317,14 @@ function applyRTL(isActive) {
 
   if (hostname.endsWith('deepseek.com')) {
     getStyleElement(RTL_STYLE_ID).textContent = DeepseekRtlCss;
+    const elements = document.getElementsByClassName("ds-scroll-area");
+
+    for (const element of elements) {
+      element.scrollTo({
+        left: element.scrollWidth,
+        behavior: "smooth"
+      });
+    }
   }
   else if (hostname.endsWith('chatgpt.com')) {
     getStyleElement(RTL_STYLE_ID).textContent = ChatgptRtlCss;
