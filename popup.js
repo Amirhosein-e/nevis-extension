@@ -395,6 +395,50 @@ async function handleReset() {
   }
 }
 
+async function updateActiveLogo(tab) {
+  if (!tab || !tab.url) return;
+
+  try {
+    const url = new URL(tab.url);
+    const hostname = url.hostname.toLowerCase();
+    
+    document.querySelectorAll('.logo-glass-box').forEach(box => {
+      box.classList.remove('active');
+    });
+
+    let targetDomain = '';
+
+    if (hostname.endsWith('deepseek.com')) {
+      targetDomain = 'deepseek';
+    } else if (hostname.endsWith('chatgpt.com') || hostname.endsWith('openai.com')) {
+      targetDomain = 'chatgpt';
+    } else if (hostname === 'aistudio.google.com') {
+      targetDomain = 'aistudio';
+    } else if (hostname.endsWith('claude.ai')) {
+      targetDomain = 'claude';
+    } else if (hostname.endsWith('qwen.ai') || hostname.endsWith('qwenlm.ai')) {
+      targetDomain = 'qwen';
+    } else if (hostname.endsWith('perplexity.ai')) {
+      targetDomain = 'perplexity';
+    } else if (hostname.endsWith('mistral.ai')) {
+      targetDomain = 'mistral';
+    } else if (hostname.endsWith('grok.com')) {
+      targetDomain = 'grok';
+    } else if (hostname.includes('notebooklm.google')) {
+      targetDomain = 'notebooklm';
+    }
+
+    if (targetDomain) {
+      const activeBox = document.querySelector(`.logo-glass-box[data-domain="${targetDomain}"]`);
+      if (activeBox) {
+        activeBox.classList.add('active');
+      }
+    }
+  } catch (error) {
+    console.warn('error in find address', error);
+  }
+}
+
 // ─── شنوندگان رویدادها (Event Listeners) ────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -413,6 +457,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   document.getElementById('toggle-rtl').checked = !!isRTL;
+
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  await updateActiveLogo(tab);
 
   // رویدادهای آکاردئون
   document.getElementById('accordion-trigger').addEventListener('click', toggleAccordion);
