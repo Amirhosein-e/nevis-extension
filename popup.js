@@ -439,12 +439,52 @@ async function updateActiveLogo(tab) {
   }
 }
 
+async function filterLogosByRtlSettings() {
+  const { rtlSettings = {} } = await chrome.storage.local.get('rtlSettings');
+
+  // نقشه‌ی domain -> data-site در تنظیمات
+  const domainToSiteKey = {
+    'deepseek':    'deepseek.com',
+    'chatgpt':     'chatgpt.com',
+    'aistudio':    'aistudio.google.com',
+    'claude':      'claude.ai',
+    'qwen':        'qwen.ai',
+    'perplexity':  'perplexity.ai',
+    'mistral':     'mistral.ai',
+    'grok':        'grok.com',
+    'notebooklm':  'notebooklm.google.com',
+    'z-ai':  'z.ai',
+    'copilot':  'notebooklm.google.com',
+  };
+
+  document.querySelectorAll('#logos-group .logo-glass-box').forEach(box => {
+    const domain = box.getAttribute('data-domain');
+    const siteKey = domainToSiteKey[domain];
+
+    if (!siteKey) {
+      // اگر کلید پیدا نشد، مخفی کن
+      box.style.display = 'none';
+      return;
+    }
+
+    // اگر در rtlSettings تعریف نشده باشد = خاموش
+    const isEnabled = rtlSettings[siteKey] === true;
+    box.style.display = isEnabled ? 'flex' : 'none';
+  });
+}
+
 // ─── شنوندگان رویدادها (Event Listeners) ────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', async () => {
   const customFonts = await loadCustomFonts();
   registerCustomFonts(customFonts);
   renderCustomFonts(customFonts);
+  const headerLogo = document.getElementById('header-logo');
+  if (headerLogo) {
+    headerLogo.addEventListener('error', function () {
+      this.style.display = 'none';
+    });
+  }
 
   const { activeFont, isRTL } = await chrome.storage.local.get(['activeFont', 'isRTL']);
 
@@ -460,6 +500,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   await updateActiveLogo(tab);
+  await filterLogosByRtlSettings();
+
 
   // رویدادهای آکاردئون
   document.getElementById('accordion-trigger').addEventListener('click', toggleAccordion);
@@ -473,9 +515,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // رویدادهای کنترلی
   document.getElementById('toggle-rtl').addEventListener('change', handleRtlToggle);
-  document.getElementById('reset-btn').addEventListener('click', handleReset);
+  
+  // باز کردن صفحه تنظیمات در تب جدید
+  document.getElementById('setting-btn').addEventListener('click', () => {
+    chrome.tabs.create({ url: chrome.runtime.getURL('setting/setting.html') });
+  });
+
   document.getElementById('back-btn').addEventListener('click', hideAddFontCard);
   document.getElementById('add-confirm-btn').addEventListener('click', handleAddConfirm);
 
