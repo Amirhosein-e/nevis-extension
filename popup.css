@@ -126,7 +126,7 @@ header {
 }
 
 main {
-  background: linear-gradient(306deg, black, #0b5fe942);
+  background: linear-gradient(306deg, black, #004eae99);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -259,13 +259,13 @@ main {
 }
 
 /* ─── interactions: reset button ──────────────────── */
-#reset-btn {
+#setting-btn {
   display: flex;
   align-items: center;
   gap: 4px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border-light);
-  color: var(--text-secondary);
+  color: #b0cbf0;
   font-size: 10px;
   padding: 4px 8px;
   border-radius: var(--radius-sm);
@@ -274,21 +274,21 @@ main {
   font-family: inherit;
 }
 
-#reset-btn:hover {
+#setting-btn:hover {
   background: rgba(239, 68, 68, 0.08);
-  border-color: rgba(239, 68, 68, 0.25);
-  color: #f87171;
+  border-color: rgba(146, 228, 248, 0.242);
+  color: #f4eeee;
 }
 
 #reset-btn:active {
   transform: scale(0.96);
 }
 
-.reset-icon {
+.settings-icon {
   transition: transform var(--transition-smooth);
 }
 
-#reset-btn:hover .reset-icon {
+#setting-btn:hover .settings-icon {
   transform: rotate(-45deg);
 }
 
