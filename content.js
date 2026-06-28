@@ -58,69 +58,57 @@ const FONT_ELEMENTS = [
   'pre', 'option', 'dt', 'dd', 'figcaption', 'mark', 'small', 'strong'
 ];
 
-// ─── تنظیمات اختصاصی سایت‌ها برای اعمال فونت ───────────────────────────────
-
-const SITE_FONT_SETTINGS = {
-  'deepseek.com': {
-    enabled: true,
-    exclude: ['.katex *', '.katex-display *']
-  },
-  'chatgpt.com': {
-    enabled: true,
-    exclude: ['pre', 'code', '.code-block__code', '[class*="symbol"]']
-  },
-  'aistudio.google.com': {
-    enabled: true,
-    exclude: ['ms-code-block *', '.katex *', '.katex-display *', '[class*="symbol"]', '.inline-code', '.console-right-panel *', 'ms-differ *']
-  },
-  'claude.ai': {
-    enabled: true,
-    exclude: ['span[data-cds="Icon"]', '.katex *', '.katex-display *', '.code-block__code *', 'div[data-skill-file-viewer] *']
-  },
-  'qwen.ai': {
-    enabled: true,
-    exclude: ['.katex *', '.qwen-markdown-code *', 'qwen-markdown-codespan']
-  }
+const SITE_FONT_EXCLUDE = {
+  'deepseek.com':        ['.katex *', '.katex-display *'],
+  'chatgpt.com':         ['pre', 'code', '.code-block__code', '[class*="symbol"]'],
+  'aistudio.google.com': ['ms-code-block *', '.katex *', '.katex-display *', '[class*="symbol"]', '.inline-code', '.console-right-panel *', 'ms-differ *'],
+  'claude.ai':           ['span[data-cds="Icon"]', '.katex *', '.katex-display *', '.code-block__code *', 'div[data-skill-file-viewer] *'],
+  'qwen.ai':             ['.katex *', '.qwen-markdown-code *', 'qwen-markdown-codespan'],
 };
 
-// تابع کمکی برای دریافت تنظیمات فونت سایت فعلی
-function getSiteFontSettings() {
+const DEFAULT_EXCLUDE = ['[class*="symbol"]', '.katex'];
+
+
+async function getSiteFontSettings() {
   const hostname = window.location.hostname;
-  const matchedKey = Object.keys(SITE_FONT_SETTINGS).find(domain => 
+  const { siteSettings = {} } = await chrome.storage.local.get('siteSettings');
+
+  // پیدا کردن domain متناظر در siteSettings
+  const matchedDomain = Object.keys(siteSettings).find(domain =>
     hostname.endsWith(domain) || hostname === domain
   );
 
-  if (matchedKey) {
-    return SITE_FONT_SETTINGS[matchedKey];
+  if (matchedDomain !== undefined) {
+    const isEnabled = siteSettings[matchedDomain] === true;
+    const exclude = SITE_FONT_EXCLUDE[matchedDomain] || DEFAULT_EXCLUDE;
+    return { enabled: isEnabled, exclude };
   }
 
-  // تنظیمات پیش‌فرض برای سایت‌هایی که در لیست بالا تعریف نشده‌اند.
-  // اگر می‌خواهید فونت فقط در سایت‌های مشخص‌شده فعال شود، مقدار enabled را false قرار دهید.
+  // اگر در لیست setting نیست = فونت اعمال می‌شه با exclude پیش‌فرض
   return {
     enabled: true,
-    exclude: ['[class*="symbol"]', '.katex']
+    exclude: SITE_FONT_EXCLUDE[hostname] || DEFAULT_EXCLUDE
   };
 }
 
-// ─── توابع کمکی DOM و اعمال استایل ──────────────────────────────────────────
+// ─── ساخت CSS اعمال فونت ─────────────────────────────────────────────────────
 
-function buildOverrideCss(fontName) {
-  const settings = getSiteFontSettings();
-  
-  // اگر اعمال فونت برای این سایت غیرفعال شده باشد، رشته خالی بازگردانده می‌شود
+async function buildOverrideCss(fontName) {
+  const settings = await getSiteFontSettings();
+
   if (!settings.enabled) {
     return '';
   }
 
-  // ساخت زنجیره‌ای از استثنائات به صورت :not()
   const exclusionString = settings.exclude && settings.exclude.length > 0
     ? settings.exclude.map(selector => `:not(${selector})`).join('')
     : '';
 
   const selectors = FONT_ELEMENTS.map(tag => `${tag}${exclusionString}`);
-
   return `${selectors.join(',\n')} { font-family: '${fontName}', sans-serif !important; }`;
 }
+
+// ─── توابع کمکی DOM و اعمال استایل ──────────────────────────────────────────
 
 function getStyleElement(id) {
   let el = document.getElementById(id);
@@ -140,7 +128,7 @@ function removeStyleElement(id) {
 function applyFont(fontFaceCss, overrideCss) {
   if (!fontFaceCss) return;
   getStyleElement(FONTFACE_STYLE_ID).textContent = fontFaceCss;
-  
+
   if (overrideCss) {
     getStyleElement(OVERRIDE_STYLE_ID).textContent = overrideCss;
   } else {
@@ -185,24 +173,20 @@ function applyRTL(isActive) {
       direction: rtl !important;
       text-align: right !important;
     }
-    
     .ds-markdown .ds-scroll-area {
       direction: ltr !important; 
       transform: translateX(80px);
     }
-  
     .ds-markdown .ds-scroll-area table {
       direction: rtl !important;
       width: max-content !important;
-      
     }
-    
     .ds-markdown th, .ds-markdown td {
       direction: rtl !important;
       text-align: right !important;
     }
-`;
-  
+  `;
+
   const AiStudioRtlCss = `
     ms-chat-turn { 
       direction: rtl !important;
@@ -241,7 +225,7 @@ function applyRTL(isActive) {
       direction: ltr !important;
     }
   `;
-  
+
   const ChatgptRtlCss = `
       direction: rtl !important;
       text-align: right !important; 
@@ -265,10 +249,6 @@ function applyRTL(isActive) {
       direction: ltr !important;
       text-align: left !important;
       unicode-bidi: embed;
-    }
-    .code-block__code{
-      direction: ltr !important;
-      text-align: left !important;
     }
     .code-block__code{
       direction: ltr !important;
@@ -303,27 +283,19 @@ function applyRTL(isActive) {
       border-right: none !important; 
       border-left: 1px solid #e1e3ea !important; 
     }
-
-    /*حذف خط چپ از اینو گذاشتم که آخرین ستون لبه بیرونی جدول خط اضافه نداشته باشه */
     .qwen-markdown-table-thead-tr-th:last-child,
     .qwen-markdown-table-tbody-tr-td:last-child {
       border-left: none !important;
     }
-
   `;
-
 
   const hostname = window.location.hostname;
 
   if (hostname.endsWith('deepseek.com')) {
     getStyleElement(RTL_STYLE_ID).textContent = DeepseekRtlCss;
     const elements = document.getElementsByClassName("ds-scroll-area");
-
     for (const element of elements) {
-      element.scrollTo({
-        left: element.scrollWidth,
-        behavior: "smooth"
-      });
+      element.scrollTo({ left: element.scrollWidth, behavior: "smooth" });
     }
   }
   else if (hostname.endsWith('chatgpt.com')) {
@@ -340,29 +312,30 @@ function applyRTL(isActive) {
   }
 }
 
-// ─── شنونده پیام‌ها و مقداردهی اولیه ──────────────────────────────────────────
+// ─── شنونده پیام‌ها و مقداردهی اولیه ────────────────────────────────────────
 
 if (!window.__fontChangerListenerRegistered) {
   window.__fontChangerListenerRegistered = true;
 
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    try {
-      if (message.action === 'applyFont') {
-        // برای بازسازی صحیح CSS استثنائات در سمت مرورگر، از نام فونت فرستاده‌شده استفاده می‌شود
-        const fontName = message.fontName || 'Vazirmatn'; 
-        const overrideCss = buildOverrideCss(fontName);
-        applyFont(message.fontFaceCss, overrideCss);
-        sendResponse({ success: true });
-      } else if (message.action === 'removeFont') {
-        removeFont();
-        sendResponse({ success: true });
-      } else if (message.action === 'applyRTL') {
-        applyRTL(message.isActive);
-        sendResponse({ success: true });
+    (async () => {
+      try {
+        if (message.action === 'applyFont') {
+          const fontName = message.fontName || 'Vazirmatn';
+          const overrideCss = await buildOverrideCss(fontName);
+          applyFont(message.fontFaceCss, overrideCss);
+          sendResponse({ success: true });
+        } else if (message.action === 'removeFont') {
+          removeFont();
+          sendResponse({ success: true });
+        } else if (message.action === 'applyRTL') {
+          applyRTL(message.isActive);
+          sendResponse({ success: true });
+        }
+      } catch (err) {
+        sendResponse({ success: false, error: err.message });
       }
-    } catch (err) {
-      sendResponse({ success: false, error: err.message });
-    }
+    })();
     return true;
   });
 }
@@ -370,10 +343,10 @@ if (!window.__fontChangerListenerRegistered) {
 async function init() {
   try {
     const { activeFont, isRTL, customFonts = [] } = await chrome.storage.local.get(['activeFont', 'isRTL', 'customFonts']);
-    
+
     if (activeFont) {
       let fontFaceCss = "";
-      
+
       if (FONT_CONFIG[activeFont]) {
         fontFaceCss = FONT_CONFIG[activeFont].fontFaceCss;
       } else {
@@ -384,9 +357,11 @@ async function init() {
       }
 
       if (fontFaceCss) {
-        applyFont(fontFaceCss, buildOverrideCss(activeFont));
+        const overrideCss = await buildOverrideCss(activeFont);
+        applyFont(fontFaceCss, overrideCss);
       }
     }
+
     if (isRTL) {
       applyRTL(true);
     }

@@ -54,6 +54,7 @@ async function loadSitesFromStorage() {
                 }
             }
         } else if (isActive) {
+            // سایت دستی که قبلاً اضافه شده
             renderCustomBadge(url);
         }
     }
