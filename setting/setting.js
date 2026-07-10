@@ -5,23 +5,23 @@ const plusIcon = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" st
 // ===== توابع ذخیره و بازیابی اطلاعات =====
 function saveSitesToStorage() {
     const siteSettings = {};
-    
+
     // سایت‌های فعال
     document.querySelectorAll('#active-sites .site-badge').forEach(badge => {
         siteSettings[badge.getAttribute('data-url')] = true;
     });
-    
+
     // سایت‌های غیرفعال (مستثنی شده)
     document.querySelectorAll('#removed-sites .site-badge').forEach(badge => {
         siteSettings[badge.getAttribute('data-url')] = false;
     });
-    
+
     chrome.storage.local.set({ siteSettings });
 }
 
 async function loadSitesFromStorage() {
     const { siteSettings } = await chrome.storage.local.get('siteSettings');
-    
+
     if (!siteSettings) {
         saveSitesToStorage();
         return;
@@ -29,15 +29,15 @@ async function loadSitesFromStorage() {
 
     for (const [url, isActive] of Object.entries(siteSettings)) {
         const badge = document.querySelector(`.site-badge[data-url="${url}"]`);
-        
+
         if (badge) {
             const currentParentId = badge.parentElement.id;
             const targetParentId = isActive ? 'active-sites' : 'removed-sites';
-            
+
             if (currentParentId !== targetParentId) {
                 const targetList = document.getElementById(targetParentId);
                 const btn = badge.querySelector('.badge-action-btn');
-                
+
                 if (isActive) {
                     btn.className = 'badge-action-btn btn-remove';
                     btn.title = 'حذف';
@@ -61,7 +61,7 @@ async function loadSitesFromStorage() {
 }
 
 // ===== توابع رابط کاربری (به صورت سراسری) =====
-window.moveSite = function(buttonElement, targetListId) {
+window.moveSite = function (buttonElement, targetListId) {
     const badge = buttonElement.closest('.site-badge');
     const targetList = document.getElementById(targetListId);
     const isCustomSite = badge.getAttribute('data-custom') === 'true';
@@ -126,17 +126,27 @@ function extractDomain(url) {
 async function getFavicon(domain) {
     const methods = [
         `https://www.google.com/s2/favicons?domain=${domain}&sz=128`,
-        `https://${domain}/favicon.ico`,
+        `https://unavatar.io/${domain}`,
         `https://icons.duckduckgo.com/ip3/${domain}.ico`,
-        `https://api.faviconkit.com/${domain}/64`
+        `https://${domain}/favicon.ico`,
+        `https://icon.horse/icon/${domain}`,
     ];
-    
-    try {
-        const response = await fetch(methods[0]);
-        if (response.ok) {
-            return methods[0];
+
+    for (const method of methods) {
+        try {
+            const response = await fetch(method, {
+                cache: 'force-cache',
+                signal: AbortSignal.timeout(3000),
+            });
+            
+            if (response.ok) {
+                return method;
+            }
+        } catch (e) {
+            continue;
         }
-    } catch (e) {}
+    }
+    
     return null;
 }
 
@@ -155,7 +165,7 @@ function isDuplicateSite(domain) {
     return allBadges.some(badge => badge.getAttribute('data-url') === domain);
 }
 
-window.renderCustomBadge = async function(domain) {
+window.renderCustomBadge = async function (domain) {
     const faviconUrl = await getFavicon(domain);
     const newBadge = document.createElement('div');
     newBadge.className = 'site-badge';
@@ -168,7 +178,7 @@ window.renderCustomBadge = async function(domain) {
         img.src = faviconUrl;
         img.className = 'badge-logo';
         img.alt = domain;
-        img.onerror = function() {
+        img.onerror = function () {
             this.replaceWith(createDefaultFavicon(domain));
         };
         newBadge.appendChild(img);
@@ -195,7 +205,8 @@ async function addNewSite() {
     const addBtnText = document.getElementById('addBtnText');
     const loadingSpinner = document.getElementById('loadingSpinner');
 
-    const url = urlInput.value.trim();
+    let url = urlInput.value.trim();
+    url = url.replace(/^\/+|\/+$/g, '');
     if (!url) {
         errorMsg.textContent = 'لطفاً یک آدرس وارد کنید';
         errorMsg.classList.add('active');
@@ -246,15 +257,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     // رویدادهای مودال
     // ------------------------------------------
     document.getElementById('open-add-site-modal').addEventListener('click', openAddSiteModal);
-    document.getElementById('modal-close-btn').addEventListener('click', closeAddSiteModal);
     document.getElementById('modal-cancel-btn').addEventListener('click', closeAddSiteModal);
     document.getElementById('addSiteBtn').addEventListener('click', addNewSite);
 
-    document.getElementById('siteUrl').addEventListener('keypress', function(e) {
+    document.getElementById('siteUrl').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') addNewSite();
     });
 
-    document.getElementById('siteUrl').addEventListener('input', function() {
+    document.getElementById('siteUrl').addEventListener('input', function () {
         document.getElementById('urlError').classList.remove('active');
     });
 
@@ -280,15 +290,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     // منطق ذخیره و بازیابی تب RTL
     // ------------------------------------------
     const rtlToggles = document.querySelectorAll('.rtl-toggle');
-    
+
     // خواندن مقادیر ذخیره شده
     chrome.storage.local.get('rtlSettings', ({ rtlSettings = {} }) => {
         rtlToggles.forEach(toggle => {
             const site = toggle.getAttribute('data-site');
-            
+
             // اعمال وضعیت ذخیره شده
             if (rtlSettings[site] !== undefined) {
                 toggle.checked = rtlSettings[site];
+            } else {
+                // default: active for all sites
+                toggle.checked = true;
+                rtlSettings[site] = true;
+                chrome.storage.local.set({ rtlSettings });
             }
 
             // ذخیره هنگام تغییر سوئیچ
