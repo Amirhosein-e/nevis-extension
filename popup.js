@@ -1,48 +1,46 @@
 function getVazirCss() {
   const getUrl = (name) => chrome.runtime.getURL(`fonts/vazir/${name}.woff2`);
   return `
-    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir')}') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir-Bold')}') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir-Light')}') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir-Medium')}') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir-Thin')}') format('woff2'); font-weight: 100; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir-Light')}') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir')}') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir-Medium')}') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir-Bold')}') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
   `;
 }
 
-function getShabnamCss() {
-  const url = chrome.runtime.getURL('fonts/shabnam/Shabnam.woff2');
-  return `@font-face { font-family: 'Shabnam'; src: url('${url}') format('woff2'); font-weight: normal; font-style: normal; font-display: swap; }`;
+function getEstedadCss() {
+  const getUrl = (name) => chrome.runtime.getURL(`fonts/estedad/${name}.woff2`);
+  return `
+    @font-face { font-family: 'Estedad'; src: url('${getUrl('Estedad-Light')}') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Estedad'; src: url('${getUrl('Estedad-Regular')}') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Estedad'; src: url('${getUrl('Estedad-Medium')}') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Estedad'; src: url('${getUrl('Estedad-SemiBold')}') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Estedad'; src: url('${getUrl('Estedad-Bold')}') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Estedad'; src: url('${getUrl('Estedad-ExtraBold')}') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
+  `;
+}
+function getSahelCss() {
+  const getUrl = (name) => chrome.runtime.getURL(`fonts/sahel/${name}.woff2`);
+  return `
+    @font-face { font-family: 'Sahel'; src: url('${getUrl('Sahel-Light')}') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Sahel'; src: url('${getUrl('Sahel')}') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Sahel'; src: url('${getUrl('Sahel-SemiBold')}') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Sahel'; src: url('${getUrl('Sahel-Bold')}') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Sahel'; src: url('${getUrl('Sahel-Black')}') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }
+  `;
 }
 
 function getGandomCss() {
-  const url = chrome.runtime.getURL('fonts/gandom/Gandom-FD.woff');
+  const url = chrome.runtime.getURL('fonts/gandom/Gandom.woff');
   return `@font-face { font-family: 'Gandom'; src: url('${url}') format('woff'); font-weight: normal; font-style: normal; font-display: swap; }`;
-}
-
-function getLalezarCss() {
-  const bold = chrome.runtime.getURL('fonts/lalezar/Digi-Lalezar-Plus-Circle.ttf');
-  const regular = chrome.runtime.getURL('fonts/lalezar/DigiLalezarPlus.ttf');
-  return `
-    @font-face { font-family: 'Lalezar'; src: url('${regular}') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Lalezar'; src: url('${bold}') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
-  `;
-}
-
-function getKaraCss() {
-  const getUrl = (name) => chrome.runtime.getURL(`fonts/kara/${name}.ttf`);
-  return `
-    @font-face { font-family: 'Kara'; src: url('${getUrl('Kara-Regular')}') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Kara'; src: url('${getUrl('Kara-SemiBold')}') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Kara'; src: url('${getUrl('Kara-Light')}') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
-  `;
 }
 
 const BUILTIN_FONTS = {
   Vazirmatn: { get fontFaceCss() { return getVazirCss(); } },
-  Shabnam:   { get fontFaceCss() { return getShabnamCss(); } },
-  Lalezar:   { get fontFaceCss() { return getLalezarCss(); } },
-  Kara:      { get fontFaceCss() { return getKaraCss(); } },
-  Gandom:    { get fontFaceCss() { return getGandomCss(); } },
+  Estedad: { get fontFaceCss() { return getEstedadCss(); } },
+  Sahel: { get fontFaceCss() { return getSahelCss(); } },
+  Gandom: { get fontFaceCss() { return getGandomCss(); } }
 };
 
 let POPUP_FONTS = { ...BUILTIN_FONTS };
@@ -50,10 +48,10 @@ let currentFontValue = '';
 let selectedFile = null;
 
 const FONT_ELEMENTS = [
-  'body','h1','h2','h3','h4','h5','h6',
-  'p','a','span','div','li','td','th',
-  'input','textarea','button','select','label',
-  'pre','option','dt','dd','figcaption','mark','small','strong',
+  'body', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+  'p', 'a', 'span', 'div', 'li', 'td', 'th',
+  'input', 'textarea', 'button', 'select', 'label',
+  'pre', 'option', 'dt', 'dd', 'figcaption', 'mark', 'small', 'strong',
 ];
 
 // ─── توابع کاربردی و مدیریت استایل ──────────────────────────────────────────
@@ -136,7 +134,7 @@ function setSelectedFont(value, label) {
   currentFontValue = value;
   document.getElementById('selected-font-label').textContent = label;
   document.querySelectorAll('.font-item').forEach(el => el.classList.remove('active'));
-  
+
   const active = document.querySelector(`.font-item[data-value="${CSS.escape(value)}"]`);
   if (active) active.classList.add('active');
 }
@@ -223,9 +221,9 @@ function handleFileSelected(file) {
   }
 
   selectedFile = file;
-  document.getElementById('upload-content').style.display  = 'none';
+  document.getElementById('upload-content').style.display = 'none';
   document.getElementById('upload-selected').style.display = '';
-  document.getElementById('upload-filename').textContent   = file.name;
+  document.getElementById('upload-filename').textContent = file.name;
   document.getElementById('upload-zone').classList.add('has-file');
   setFormMessage('', '');
 
@@ -240,7 +238,7 @@ function handleFileSelected(file) {
 
 async function handleAddConfirm() {
   const nameInput = document.getElementById('font-name-input');
-  const fontName  = nameInput.value.trim();
+  const fontName = nameInput.value.trim();
 
   if (!selectedFile) {
     setFormMessage('لطفاً یک فایل فونت انتخاب کنید.', 'error');
@@ -254,18 +252,18 @@ async function handleAddConfirm() {
 
   const confirmBtn = document.getElementById('add-confirm-btn');
   const originalBtnHtml = confirmBtn.innerHTML;
-  
+
   confirmBtn.disabled = true;
   confirmBtn.textContent = 'در حال پردازش...';
 
   try {
     const dataUrl = await fileToDataUrl(selectedFile);
-    const format  = getFormatFromExt(selectedFile.name);
+    const format = getFormatFromExt(selectedFile.name);
     const id = 'custom_' + Date.now();
 
     const existing = await loadCustomFonts();
     const isDuplicate = existing.some(f => f.name.toLowerCase() === fontName.toLowerCase());
-    
+
     if (isDuplicate) {
       setFormMessage('فونتی با این نام قبلاً اضافه شده است.', 'error');
       confirmBtn.disabled = false;
@@ -303,7 +301,7 @@ async function handleAddConfirm() {
 function fileToDataUrl(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onload  = e => resolve(e.target.result);
+    reader.onload = e => resolve(e.target.result);
     reader.onerror = () => reject(new Error('خطا در خواندن فایل'));
     reader.readAsDataURL(file);
   });
@@ -313,13 +311,13 @@ function fileToDataUrl(file) {
 
 async function applySelectedFont(fontValue) {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  
+
   if (fontValue && POPUP_FONTS[fontValue]) {
     await chrome.storage.local.set({ activeFont: fontValue });
     if (tab) {
       await sendMessageToTab(tab, {
         action: 'applyFont',
-        fontName: fontValue,
+        fontName: POPUP_FONTS[fontValue].name || fontValue, 
         fontFaceCss: POPUP_FONTS[fontValue].fontFaceCss,
         overrideCss: buildOverrideCss(POPUP_FONTS[fontValue].name || fontValue),
       });
@@ -401,7 +399,7 @@ async function updateActiveLogo(tab) {
   try {
     const url = new URL(tab.url);
     const hostname = url.hostname.toLowerCase();
-    
+
     document.querySelectorAll('.logo-glass-box').forEach(box => {
       box.classList.remove('active');
     });
@@ -427,6 +425,15 @@ async function updateActiveLogo(tab) {
     } else if (hostname.includes('notebooklm.google')) {
       targetDomain = 'notebooklm';
     }
+    else if (hostname.endsWith('gemini.google.com')) {
+      targetDomain = 'gemini';
+    }
+    else if (hostname.endsWith('z.ai')) {
+      targetDomain = 'z-ai';
+    }
+    else if (hostname.endsWith('arena.ai') || hostname.includes('lmarena.ai')) {
+      targetDomain = 'arena';
+    }
 
     if (targetDomain) {
       const activeBox = document.querySelector(`.logo-glass-box[data-domain="${targetDomain}"]`);
@@ -442,38 +449,84 @@ async function updateActiveLogo(tab) {
 async function filterLogosByRtlSettings() {
   const { rtlSettings = {} } = await chrome.storage.local.get('rtlSettings');
 
-  // نقشه‌ی domain -> data-site در تنظیمات
   const domainToSiteKey = {
-    'deepseek':    'deepseek.com',
-    'chatgpt':     'chatgpt.com',
-    'aistudio':    'aistudio.google.com',
-    'claude':      'claude.ai',
-    'qwen':        'qwen.ai',
-    'perplexity':  'perplexity.ai',
-    'mistral':     'mistral.ai',
-    'grok':        'grok.com',
-    'notebooklm':  'notebooklm.google.com',
-    'z-ai':  'z.ai',
-    'copilot':  'notebooklm.google.com',
+    'deepseek': 'deepseek.com',
+    'chatgpt': 'chatgpt.com',
+    'aistudio': 'aistudio.google.com',
+    'claude': 'claude.ai',
+    'qwen': 'qwen.ai',
+    'perplexity': 'perplexity.ai',
+    'mistral': 'mistral.ai',
+    'grok': 'grok.com',
+    'notebooklm': 'notebooklm.google.com',
+    'arena': 'arena.ai',
+    'z-ai': 'z.ai',
+    'gemini': 'gemini.google.com'
   };
 
-  document.querySelectorAll('#logos-group .logo-glass-box').forEach(box => {
+  const allBoxes = Array.from(document.querySelectorAll('#logos-group .logo-glass-box'));
+
+  const enabledBoxes = allBoxes.filter(box => {
     const domain = box.getAttribute('data-domain');
     const siteKey = domainToSiteKey[domain];
+    return siteKey && rtlSettings[siteKey] === true;
+  });
 
-    if (!siteKey) {
-      // اگر کلید پیدا نشد، مخفی کن
-      box.style.display = 'none';
-      return;
+  let boxesToShow = [];
+
+  if (enabledBoxes.length <= 9) {
+    boxesToShow = enabledBoxes;
+  } else {
+    const activeCurrentSiteBox = enabledBoxes.find(box => box.classList.contains('active'));
+
+    if (activeCurrentSiteBox) {
+      boxesToShow.push(activeCurrentSiteBox);
+      
+      const remainingBoxes = enabledBoxes.filter(box => box !== activeCurrentSiteBox);
+      boxesToShow = [...boxesToShow, ...remainingBoxes.slice(0, 8)];
+    } else {
+      boxesToShow = enabledBoxes.slice(0, 9);
     }
+  }
 
-    // اگر در rtlSettings تعریف نشده باشد = خاموش
-    const isEnabled = rtlSettings[siteKey] === true;
-    box.style.display = isEnabled ? 'flex' : 'none';
+  allBoxes.forEach(box => {
+    if (boxesToShow.includes(box)) {
+      box.style.display = 'flex';
+    } else {
+      box.style.display = 'none';
+    }
   });
 }
 
-// ─── شنوندگان رویدادها (Event Listeners) ────────────────────────────────────
+function setupLogoNavigation() {
+  const domainToUrl = {
+    'deepseek': 'https://chat.deepseek.com',
+    'chatgpt': 'https://chatgpt.com',
+    'aistudio': 'https://aistudio.google.com',
+    'claude': 'https://claude.ai',
+    'qwen': 'https://chat.qwen.ai',
+    'perplexity': 'https://perplexity.ai',
+    'mistral': 'https://chat.mistral.ai',
+    'grok': 'https://grok.com',
+    'notebooklm': 'https://notebooklm.google.com',
+    'arena': 'https://arena.ai',
+    'z-ai': 'https://chat.z.ai',
+    'gemini': 'https://gemini.google.com'
+  };
+
+  document.querySelectorAll('.logo-glass-box').forEach(box => {
+    box.addEventListener('click', function(e) {
+      const domain = this.getAttribute('data-domain');
+      const url = domainToUrl[domain];
+      
+      if (url) {
+        chrome.tabs.create({ url: url });
+      }
+    });
+
+    box.style.cursor = 'pointer';
+  });
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
   const customFonts = await loadCustomFonts();
@@ -486,7 +539,48 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  const { activeFont, isRTL } = await chrome.storage.local.get(['activeFont', 'isRTL']);
+  const { activeFont, isRTL, rtlSettings, siteSettings } = await chrome.storage.local.get(['activeFont', 'isRTL', 'rtlSettings', 'siteSettings']);
+
+  if (!rtlSettings || Object.keys(rtlSettings).length === 0) {
+    const defaultRtlSettings = {
+      'deepseek.com': true,
+      'chatgpt.com': true,
+      'aistudio.google.com': true,
+      'claude.ai': true,
+      'qwen.ai': true,
+      'gemini.google.com': true,
+      'grok.com': true,
+      'z.ai': true,
+      'notebooklm.google.com': true,
+      'perplexity.ai': true,
+      'mistral.ai': true,
+      'arena.ai': true
+    };
+    await chrome.storage.local.set({ rtlSettings: defaultRtlSettings });
+  }
+  if (!siteSettings || Object.keys(siteSettings).length === 0) {
+    const defaultSiteSettings = {
+      'chatgpt.com': true,
+      'claude.ai': true,
+      'gemini.google.com': true,
+      'aistudio.google.com': true,
+      'deepseek.com': true,
+      'grok.com': true,
+      'mistral.ai': true,
+      'arena.ai': true,
+      'z.ai': true,
+      'notebooklm.google.com': true,
+      'qwen.ai': true,
+      'perplexity.ai': true,
+      'copilot.microsoft.com': true,
+      'google.com': true,
+      'wikipedia.org': true,
+      'linkedin.com': true,
+      'bing.com': true,
+      'mail.google.com': true
+    };
+    await chrome.storage.local.set({ siteSettings: defaultSiteSettings });
+  }
 
   if (activeFont && POPUP_FONTS[activeFont]) {
     const fontEntry = POPUP_FONTS[activeFont];
@@ -501,6 +595,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   await updateActiveLogo(tab);
   await filterLogosByRtlSettings();
+  setupLogoNavigation();
 
 
   // رویدادهای آکاردئون
@@ -516,7 +611,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   document.getElementById('toggle-rtl').addEventListener('change', handleRtlToggle);
-  
+
   // باز کردن صفحه تنظیمات در تب جدید
   document.getElementById('setting-btn').addEventListener('click', () => {
     chrome.tabs.create({ url: chrome.runtime.getURL('setting/setting.html') });
@@ -532,7 +627,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const uploadChangeBtn = document.getElementById('upload-change-btn');
 
   uploadContent.addEventListener('click', () => fontFileInput.click());
-  
+
   uploadChangeBtn.addEventListener('click', e => {
     e.stopPropagation();
     selectedFile = null;
