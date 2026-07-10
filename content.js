@@ -2,52 +2,49 @@ const FONTFACE_STYLE_ID = 'font-changer-fontface';
 const OVERRIDE_STYLE_ID = 'font-changer-override';
 const RTL_STYLE_ID = 'font-changer-rtl';
 
-// ─── توابع تولید CSS فونت‌های داخلی ───────────────────────────────────────
 
 function getVazirCss() {
   const getUrl = (name) => chrome.runtime.getURL(`fonts/vazir/${name}.woff2`);
   return `
-    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir')}') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir-Bold')}') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir-Light')}') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir-Medium')}') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir-Thin')}') format('woff2'); font-weight: 100; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir-Light')}') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir')}') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir-Medium')}') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Vazirmatn'; src: url('${getUrl('Vazir-Bold')}') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
   `;
 }
 
-function getShabnamCss() {
-  const url = chrome.runtime.getURL('fonts/shabnam/Shabnam.woff2');
-  return `@font-face { font-family: 'Shabnam'; src: url('${url}') format('woff2'); font-weight: normal; font-style: normal; font-display: swap; }`;
+function getEstedadCss() {
+  const getUrl = (name) => chrome.runtime.getURL(`fonts/estedad/${name}.woff2`);
+  return `
+    @font-face { font-family: 'Estedad'; src: url('${getUrl('Estedad-Light')}') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Estedad'; src: url('${getUrl('Estedad-Regular')}') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Estedad'; src: url('${getUrl('Estedad-Medium')}') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Estedad'; src: url('${getUrl('Estedad-SemiBold')}') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Estedad'; src: url('${getUrl('Estedad-Bold')}') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Estedad'; src: url('${getUrl('Estedad-ExtraBold')}') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
+  `;
+}
+function getSahelCss() {
+  const getUrl = (name) => chrome.runtime.getURL(`fonts/sahel/${name}.woff2`);
+  return `
+    @font-face { font-family: 'Sahel'; src: url('${getUrl('Sahel-Light')}') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Sahel'; src: url('${getUrl('Sahel')}') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Sahel'; src: url('${getUrl('Sahel-SemiBold')}') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Sahel'; src: url('${getUrl('Sahel-Bold')}') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Sahel'; src: url('${getUrl('Sahel-Black')}') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }
+  `;
 }
 
 function getGandomCss() {
-  const url = chrome.runtime.getURL('fonts/gandom/Gandom-FD.woff');
+  const url = chrome.runtime.getURL('fonts/gandom/Gandom.woff');
   return `@font-face { font-family: 'Gandom'; src: url('${url}') format('woff'); font-weight: normal; font-style: normal; font-display: swap; }`;
-}
-
-function getLalezarCss() {
-  const bold = chrome.runtime.getURL('fonts/lalezar/Digi-Lalezar-Plus-Circle.ttf');
-  const regular = chrome.runtime.getURL('fonts/lalezar/DigiLalezarPlus.ttf');
-  return `
-    @font-face { font-family: 'Lalezar'; src: url('${regular}') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Lalezar'; src: url('${bold}') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
-  `;
-}
-
-function getKaraCss() {
-  const getUrl = (name) => chrome.runtime.getURL(`fonts/kara/${name}.ttf`);
-  return `
-    @font-face { font-family: 'Kara'; src: url('${getUrl('Kara-Regular')}') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Kara'; src: url('${getUrl('Kara-SemiBold')}') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Kara'; src: url('${getUrl('Kara-Light')}') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
-  `;
 }
 
 const FONT_CONFIG = {
   Vazirmatn: { get fontFaceCss() { return getVazirCss(); } },
-  Shabnam: { get fontFaceCss() { return getShabnamCss(); } },
-  Lalezar: { get fontFaceCss() { return getLalezarCss(); } },
-  Kara: { get fontFaceCss() { return getKaraCss(); } },
+  Estedad: { get fontFaceCss() { return getEstedadCss(); } },
+  Sahel: { get fontFaceCss() { return getSahelCss(); } },
   Gandom: { get fontFaceCss() { return getGandomCss(); } }
 };
 
@@ -59,14 +56,21 @@ const FONT_ELEMENTS = [
 ];
 
 const SITE_FONT_EXCLUDE = {
-  'deepseek.com':        ['.katex *', '.katex-display *'],
-  'chatgpt.com':         ['pre', 'code', '.code-block__code', '[class*="symbol"]'],
-  'aistudio.google.com': ['ms-code-block *', '.katex *', '.katex-display *', '[class*="symbol"]', '.inline-code', '.console-right-panel *', 'ms-differ *'],
-  'claude.ai':           ['span[data-cds="Icon"]', '.katex *', '.katex-display *', '.code-block__code *', 'div[data-skill-file-viewer] *'],
+  'deepseek.com':        ['.katex *', '.katex', '.md-code-block *', 'code'],
+  'chatgpt.com':         ['pre', 'code', 'code *', '.katex-display *', '.katex', '.katex *'],
+  'aistudio.google.com': ['ms-code-block *', '.katex *', '.katex-display *', '[class*="symbol"]', '.inline-code', '.console-right-panel *', 'ms-differ *', 'ms-katex *', 'code *'],
+  'claude.ai':           ['span[data-cds="Icon"]', '.katex *', '.katex', '.katex-display *', '.code-block__code *', 'div[data-skill-file-viewer] *', 'div[role="document"] *'],
   'qwen.ai':             ['.katex *', '.qwen-markdown-code *', 'qwen-markdown-codespan'],
+  'gemini.google.com':   ['.katex *', '.katex-display *', '.math-inline *', 'code-block *', 'code'],
+  'mistral.ai':          ['.katex *', '.katex', '.katex-display *', 'div.monaco-editor *', 'pre.shiki *','pre.shiki'],
+  'grok.com':            ['.katex *', '.katex', '.katex-display *', 'code', 'code *', '.\\!font-mono'],
+  'arena.ai':            ['.katex *', '.katex', '.katex-display *', 'code', 'code *', '.\\!font-mono', '.font-mono', 'div[data-panel]:not(:has(div[class*="[--chat-padding"])) *'],
+  'z.ai':                ['.katex *', '.katex', 'code', 'code *','.cm-editor *'],
+  'perplexity.ai':       ['.katex *', '.katex', '.katex-display *'],
+  'notebooklm.google.com': ['.katex *', '.katex', '.katex-display *', 'code', 'code *'],
 };
 
-const DEFAULT_EXCLUDE = ['[class*="symbol"]', '.katex'];
+const DEFAULT_EXCLUDE = ['[class*="symbol"]', '[class*="icon"]', '[class*="status"]'];
 
 
 async function getSiteFontSettings() {
@@ -74,9 +78,12 @@ async function getSiteFontSettings() {
   const { siteSettings = {} } = await chrome.storage.local.get('siteSettings');
 
   // پیدا کردن domain متناظر در siteSettings
-  const matchedDomain = Object.keys(siteSettings).find(domain =>
-    hostname.endsWith(domain) || hostname === domain
-  );
+  const matchedDomain = Object.keys(siteSettings).find(domain =>{
+    if(domain == 'google.com'){
+      return hostname === domain;
+    }
+    return hostname === domain || hostname.endsWith(domain);
+  });
 
   if (matchedDomain !== undefined) {
     const isEnabled = siteSettings[matchedDomain] === true;
@@ -84,10 +91,9 @@ async function getSiteFontSettings() {
     return { enabled: isEnabled, exclude };
   }
 
-  // اگر در لیست setting نیست = فونت اعمال می‌شه با exclude پیش‌فرض
   return {
-    enabled: true,
-    exclude: SITE_FONT_EXCLUDE[hostname] || DEFAULT_EXCLUDE
+    enabled: false,
+    exclude: []
   };
 }
 
@@ -100,12 +106,16 @@ async function buildOverrideCss(fontName) {
     return '';
   }
 
-  const exclusionString = settings.exclude && settings.exclude.length > 0
-    ? settings.exclude.map(selector => `:not(${selector})`).join('')
-    : '';
+  const targetTags = `:is(${FONT_ELEMENTS.join(', ')})`;
+  
+  let finalSelector = targetTags;
 
-  const selectors = FONT_ELEMENTS.map(tag => `${tag}${exclusionString}`);
-  return `${selectors.join(',\n')} { font-family: '${fontName}', sans-serif !important; }`;
+  if (settings.exclude && settings.exclude.length > 0) {
+    const excludes = settings.exclude.join(', ');
+    finalSelector = `${targetTags}:not(:is(${excludes}))`;
+  }
+
+  return `${finalSelector} { font-family: '${fontName}', sans-serif !important; }`;
 }
 
 // ─── توابع کمکی DOM و اعمال استایل ──────────────────────────────────────────
@@ -160,16 +170,16 @@ function applyRTL(isActive) {
       direction: ltr !important;
       text-align: left !important;
     }
-    .katex-display{
-      direction: ltr !important;
-      text-align: center !important;
-    }
     .katex:not(.katex-display .katex) {
       direction: ltr !important;
       text-align: left !important;
       unicode-bidi: embed;
     }
-    textarea.ds-scroll-area[placeholder="Message DeepSeek"][name="search"] {
+    .ds-markdown-paragraph:has(> :first-child:is(.katex)) {
+      text-align: center !important;
+    }
+    
+    textarea.ds-scroll-area {
       direction: rtl !important;
       text-align: right !important;
     }
@@ -188,11 +198,16 @@ function applyRTL(isActive) {
   `;
 
   const AiStudioRtlCss = `
-    ms-chat-turn { 
+    .model-prompt-container{ 
+      direction: rtl !important;
+      text-align: right !important;
+      margin-top: 12px;
+    }
+    .user-prompt-container{
       direction: rtl !important;
       text-align: right !important;
     }
-    ms-chat-turn ms-code-block, ms-code-block {
+    ms-code-block{
       direction: ltr !important;
       text-align: left !important;
     }
@@ -224,12 +239,17 @@ function applyRTL(isActive) {
     .inline-code{
       direction: ltr !important;
     }
+    .diff-header.right .title{
+      text-align: right !important;
+      direction: rtl !important;
+    }
   `;
 
   const ChatgptRtlCss = `
+     #prompt-textarea p{
       direction: rtl !important;
-      text-align: right !important; 
-    }
+      text-align: right !important;
+     }
   `;
 
   const ClaudeRtlCss = `
@@ -257,6 +277,10 @@ function applyRTL(isActive) {
     div[aria-label*="code"] {
       direction: ltr !important;
       text-align: left !important;
+    }
+    div[role="textbox"] p{
+      direction: rtl !important;
+      text-align: right !important;
     }
   `;
 
@@ -289,6 +313,147 @@ function applyRTL(isActive) {
     }
   `;
 
+  const GeminiRtlCss = `
+    .table-content{
+      mask-image: none !important;
+      -webkit-mask-image = none !important;
+    }
+    .textarea{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+    .query-text{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+  `;
+
+  const MistralRtlCss = `
+    .katex-display{
+      direction: ltr !important;
+      text-align: center !important;
+    }
+    .katex:not(.katex-display .katex) {
+      direction: ltr !important;
+      text-align: left !important;
+      unicode-bidi: embed;
+    }
+    table.min-w-full{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+    div.monaco-editor{
+      direction: ltr !important;
+      text-align: left !important;
+    }
+    .peer\/table .pointer-events-none.absolute.inset-y-0.end-0 {
+      background-image: none !important;
+    }
+    div:has(> div.prose){
+      direction: rtl !important;
+      text-align: right !important;
+    }
+    div.ProseMirror{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+    pre.shiki{
+      direction: ltr !important;
+      text-align: left !important;
+    }
+    #message-input{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+  `;
+
+  const GrokRtlCss = `
+    div.pointer-events-none.absolute{
+      background-image: none !important;
+    }
+  `;
+
+  const ArenaRtlCss = `
+    div.body-base{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+    div[data-code-block="true"], code *{
+      direction: ltr !important;
+      text-align: left !important;
+    }
+    textarea[name="message"]{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+    .katex{
+      direction: ltr !important;
+      text-align: left !important;
+      unicode-bidi: embed;
+    }
+    div[class*="[--chat-padding"] div.prose{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+
+  `;
+
+  const zAiRtlCss = `
+    .user-message div.bg-\\[\\#EAEAEA\\]{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+    table{
+      direction: rtl !important;
+    }
+    .katex{
+      direction: ltr !important;
+      text-align: left !important;
+      unicode-bidi: embed;
+    }
+    thead th div{
+      text-align: center !important;
+    }
+    textarea[placeholder="Enter your creative description......"]{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+  `;
+  const PerplexityRtlCss = `
+    .katex-display{
+      direction: ltr !important;
+      text-align: center !important;
+    }
+    .katex:not(.katex-display .katex) {
+      direction: ltr !important;
+      text-align: left !important;
+      unicode-bidi: embed;
+    }
+    div:has(> pre.not-prose){
+      direction: ltr !important;
+      text-align: left !important;
+    }
+  `;
+  const notebooklmRtlCss = `
+    .katex-display{
+      direction: ltr !important;
+      text-align: center !important;
+    }
+    .katex:not(.katex-display .katex) {
+      direction: ltr !important;
+      text-align: left !important;
+      unicode-bidi: embed;
+    }
+    mat-card-content{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+    pre:has(> code){
+      direction: ltr !important;
+      text-align: left !important;
+    }
+  `;
+
   const hostname = window.location.hostname;
 
   if (hostname.endsWith('deepseek.com')) {
@@ -309,6 +474,32 @@ function applyRTL(isActive) {
   }
   else if (hostname.endsWith('qwen.ai')) {
     getStyleElement(RTL_STYLE_ID).textContent = QwenRtlCss;
+  }else if (hostname.endsWith('gemini.google.com')) {
+    getStyleElement(RTL_STYLE_ID).textContent = GeminiRtlCss;
+    const elements = document.getElementsByClassName("table-content");
+    for (const element of elements) {
+      element.scrollTo({ left: element.scrollWidth, behavior: "smooth" });
+    }
+  }else if (hostname.endsWith('mistral.ai')) {
+    getStyleElement(RTL_STYLE_ID).textContent = MistralRtlCss;
+  }else if (hostname.endsWith('grok.com')) {
+    getStyleElement(RTL_STYLE_ID).textContent = GrokRtlCss;
+    const elements = document.getElementsByClassName("table-container");
+    for (const element of elements) {
+      element.scrollLeft = element.scrollWidth;
+    }
+  }else if (hostname.endsWith('arena.ai')) {
+    getStyleElement(RTL_STYLE_ID).textContent = ArenaRtlCss;
+  }else if (hostname.endsWith('z.ai')) {
+    getStyleElement(RTL_STYLE_ID).textContent = zAiRtlCss;
+    const elements = document.querySelectorAll("div:has(table)");
+    for (const element of elements) {
+      element.scrollLeft = element.scrollWidth;
+    }
+  }else if (hostname.endsWith('perplexity.ai')) {
+    getStyleElement(RTL_STYLE_ID).textContent = PerplexityRtlCss;
+  }else if (hostname.endsWith('notebooklm.google.com')) {
+    getStyleElement(RTL_STYLE_ID).textContent = notebooklmRtlCss;
   }
 }
 
@@ -350,9 +541,10 @@ async function init() {
       if (FONT_CONFIG[activeFont]) {
         fontFaceCss = FONT_CONFIG[activeFont].fontFaceCss;
       } else {
-        const custom = customFonts.find(f => f.name === activeFont);
+        const custom = customFonts.find(f => f.id === activeFont);
         if (custom) {
           fontFaceCss = `@font-face { font-family: '${custom.name}'; src: url('${custom.dataUrl}') format('${custom.format}'); font-weight: normal; font-style: normal; font-display: swap; }`;
+          cssFontFamilyName = custom.name;
         }
       }
 
