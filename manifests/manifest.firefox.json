@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Nevis",
   "version": "1.0.0",
-  "description": "Change the typography of any website with beautiful Persian fonts.",
+  "description": "Enhance AI chatbots with RTL support and beautify any website with Persian fonts.",
   "permissions": ["storage", "activeTab", "scripting"],
   "host_permissions": ["<all_urls>"],
   "action": {
@@ -15,23 +15,26 @@
   },
   "web_accessible_resources": [
     {
-      "resources": [
-        "fonts/*"
-      ],
+      "resources": ["fonts/*"],
       "matches": ["<all_urls>"]
     }
-  ], 
+  ],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"],
       "run_at": "document_idle"
     }
-    
   ],
   "icons": {
     "16": "icons/nevis-logo.png",
     "48": "icons/nevis-logo.png",
     "128": "icons/nevis-logo.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "nevis@amirhosein-e.github.io",
+      "strict_min_version": "109.0"
+    }
   }
 }
