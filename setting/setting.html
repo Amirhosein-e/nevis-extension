@@ -1,442 +1,609 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nevis Settings</title>
-  <link rel="stylesheet" href="setting.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nevis Settings</title>
+    <link rel="stylesheet" href="setting.css" />
 </head>
+
 <body>
-
-<div class="bg-image"></div>
-
-<div class="glass-card">
-  <input type="radio" name="plan" id="glass-silver" class="tab-input" checked />
-  <input type="radio" name="plan" id="glass-platinum" class="tab-input" />
-
-  <div class="glass-radio-group">
-    <label for="glass-silver">فونت</label>
-    <label for="glass-platinum">RTL</label>
-    <div class="glass-glider"></div>
-  </div>
-
-  <div class="card-body">
-
-    <!-- تب فونت -->
-    <div class="tab-panel" id="panel-font">
-
-      <!-- بخش سایت‌های فعال -->
-      <div class="font-section">
-        <h3>اعمال فونت روی این سایت‌ها:</h3>
-        <div class="badges-container" id="active-sites">
-
-          <div class="site-badge" data-url="chatgpt.com" title="ChatGPT">
-            <img src="../icons/logos/gpt-icon.ico" class="badge-logo" alt="ChatGPT" />
-            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-            </button>
-          </div>
-
-          <div class="site-badge" data-url="claude.ai" title="Claude">
-            <img src="../icons/logos/cluad-icon.png" class="badge-logo" alt="Claude" />
-            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-            </button>
-          </div>
-
-          <div class="site-badge" data-url="gemini.google.com" title="Google Gemini">
-            <img src="../icons/logos/gemini_logo.svg" class="badge-logo" alt="Gemini" />
-            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-            </button>
-          </div>
-
-          <div class="site-badge" data-url="aistudio.google.com" title="AI Studio">
-            <img src="../icons/logos/logo_ai_studio.png" class="badge-logo" alt="AI Studio" />
-            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-            </button>
-          </div>
-
-          <div class="site-badge" data-url="grok.com" title="Grok">
-            <img src="../icons/logos/grok-icon.svg" class="badge-logo" alt="Grok" />
-            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-            </button>
-          </div>
-
-          <div class="site-badge" data-url="mistral.ai" title="Mistral">
-            <img src="../icons/logos/mistral-icon.png" class="badge-logo" alt="Mistral" />
-            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-            </button>
-          </div>
-
-          <div class="site-badge" data-url="z.ai" title="Z AI">
-            <img src="../icons/logos/z-ai-logo.svg" class="badge-logo" alt="Z AI" />
-            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-            </button>
-          </div>
-
-          <div class="site-badge" data-url="notebooklm.google.com" title="NotebookLM">
-            <img src="../icons/logos/notbooklm-logo.svg" class="badge-logo" alt="NotebookLM" />
-            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-            </button>
-          </div>
-
-          <div class="site-badge" data-url="qwen.ai" title="Qwen">
-            <img src="../icons/logos/qwen-icon.png" class="badge-logo" alt="Qwen" />
-            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-            </button>
-          </div>
-
-          <div class="site-badge" data-url="perplexity.ai" title="Perplexity">
-            <img src="../icons/logos/perplexity-icon.png" class="badge-logo" alt="Perplexity" />
-            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-            </button>
-          </div>
-
-          <div class="site-badge" data-url="copilot.microsoft.com" title="Copilot">
-            <img src="../icons/logos/copliot-logo.svg" class="badge-logo" alt="Copilot" />
-            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-            </button>
-          </div>
-
-          <!-- دکمه افزودن سایت جدید -->
-          <button class="add-site-btn" id="open-add-site-modal" title="افزودن سایت دلخواه">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-          </button>
-
-        </div>
-      </div>
-
-      <!-- بخش سایت‌های حذف شده -->
-      <div class="font-section" style="margin-top: 10px;">
-        <h3 style="color: rgba(255,255,255,0.5);">سایت‌های مستثنی شده (بدون فونت):</h3>
-        <div class="badges-container" id="removed-sites">
-
-          <div class="site-badge" data-url="deepseek.com"
-            style="opacity: 0.6;" title="DeepSeek">
-            <img src="../icons/logos/deep-seek-icon.svg" class="badge-logo" alt="DeepSeek" />
-            <button class="badge-action-btn btn-add" data-target="active-sites" title="افزودن مجدد">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </button>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-
-    <!-- تب RTL -->
-    <div class="tab-panel" id="panel-rtl">
-      <div class="grid-container">
-
-        <div class="grid-box" data-site="aistudio.google.com">
-          <img src="../icons/logos/logo_ai_studio.png" alt="AI Studio" />
-          <label class="toggle-switch">
-            <input type="checkbox" class="toggle-input rtl-toggle" data-site="aistudio.google.com" />
-            <span class="toggle-track">
-              <span class="toggle-thumb">
-                <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="3"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </span>
-            </span>
-          </label>
-        </div>
-
-        <div class="grid-box" data-site="deepseek.com">
-          <img src="../icons/logos/deep-seek-icon.svg" alt="DeepSeek" />
-          <label class="toggle-switch">
-            <input type="checkbox" class="toggle-input rtl-toggle" data-site="deepseek.com" />
-            <span class="toggle-track">
-              <span class="toggle-thumb">
-                <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="3"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </span>
-            </span>
-          </label>
-        </div>
-
-        <div class="grid-box" data-site="claude.ai">
-          <img src="../icons/logos/cluad-icon.png" alt="Claude" />
-          <label class="toggle-switch">
-            <input type="checkbox" class="toggle-input rtl-toggle" data-site="claude.ai" />
-            <span class="toggle-track">
-              <span class="toggle-thumb">
-                <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="3"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </span>
-            </span>
-          </label>
-        </div>
-
-        <div class="grid-box" data-site="chatgpt.com">
-          <img src="../icons/logos/gpt-icon.ico" alt="ChatGPT" />
-          <label class="toggle-switch">
-            <input type="checkbox" class="toggle-input rtl-toggle" data-site="chatgpt.com" />
-            <span class="toggle-track">
-              <span class="toggle-thumb">
-                <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="3"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </span>
-            </span>
-          </label>
-        </div>
-
-        <div class="grid-box" data-site="qwen.ai">
-          <img src="../icons/logos/qwen-icon.png" alt="Qwen" />
-          <label class="toggle-switch">
-            <input type="checkbox" class="toggle-input rtl-toggle" data-site="qwen.ai" />
-            <span class="toggle-track">
-              <span class="toggle-thumb">
-                <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="3"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </span>
-            </span>
-          </label>
-        </div>
-
-        <div class="grid-box" data-site="gemini.google.com">
-          <img src="../icons/logos/gemini_logo.svg" alt="Gemini" />
-          <label class="toggle-switch">
-            <input type="checkbox" class="toggle-input rtl-toggle" data-site="gemini.google.com" />
-            <span class="toggle-track">
-              <span class="toggle-thumb">
-                <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="3"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </span>
-            </span>
-          </label>
-        </div>
-
-        <div class="grid-box" data-site="grok.com">
-          <img src="../icons/logos/grok-icon.svg" alt="Grok" />
-          <label class="toggle-switch">
-            <input type="checkbox" class="toggle-input rtl-toggle" data-site="grok.com" />
-            <span class="toggle-track">
-              <span class="toggle-thumb">
-                <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="3"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </span>
-            </span>
-          </label>
-        </div>
-
-        <div class="grid-box" data-site="z.ai">
-          <img src="../icons/logos/z-ai-logo.svg" alt="Z AI" />
-          <label class="toggle-switch">
-            <input type="checkbox" class="toggle-input rtl-toggle" data-site="z.ai" />
-            <span class="toggle-track">
-              <span class="toggle-thumb">
-                <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="3"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </span>
-            </span>
-          </label>
-        </div>
-
-        <div class="grid-box" data-site="notebooklm.google.com">
-          <img src="../icons/logos/notbooklm-logo.svg" alt="NotebookLM" />
-          <label class="toggle-switch">
-            <input type="checkbox" class="toggle-input rtl-toggle" data-site="notebooklm.google.com" />
-            <span class="toggle-track">
-              <span class="toggle-thumb">
-                <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="3"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </span>
-            </span>
-          </label>
-        </div>
-
-        <div class="grid-box" data-site="perplexity.ai">
-          <img src="../icons/logos/perplexity-icon.png" alt="Perplexity" />
-          <label class="toggle-switch">
-            <input type="checkbox" class="toggle-input rtl-toggle" data-site="perplexity.ai" />
-            <span class="toggle-track">
-              <span class="toggle-thumb">
-                <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="3"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </span>
-            </span>
-          </label>
-        </div>
-
-        <div class="grid-box" data-site="mistral.ai">
-          <img src="../icons/logos/mistral-icon.png" alt="Mistral" />
-          <label class="toggle-switch">
-            <input type="checkbox" class="toggle-input rtl-toggle" data-site="mistral.ai" />
-            <span class="toggle-track">
-              <span class="toggle-thumb">
-                <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="3"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </span>
-            </span>
-          </label>
-        </div>
-
-        <div class="grid-box" data-site="copilot.microsoft.com">
-          <img src="../icons/logos/copliot-logo.svg" alt="Copilot" />
-          <label class="toggle-switch">
-            <input type="checkbox" class="toggle-input rtl-toggle" data-site="copilot.microsoft.com" />
-            <span class="toggle-track">
-              <span class="toggle-thumb">
-                <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="3"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </span>
-            </span>
-          </label>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- مودال افزودن سایت -->
-<div class="modal-overlay" id="addSiteModal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h3>افزودن سایت دلخواه</h3>
-      <button class="modal-close" id="modal-close-btn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
+    <a href="https://github.com/Amirhosein-e/nevis-extension" target="_blank" class="logo-glass-box github-link"
+        title="مشاهده پروژه در گیت‌هاب">
+        <svg fill="#d0d7e1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#d0d7e1">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <g data-name="Layer 2">
+                    <rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"></rect>
+                    <path
+                        d="M12 1A10.89 10.89 0 0 0 1 11.77 10.79 10.79 0 0 0 8.52 22c.55.1.75-.23.75-.52v-1.83c-3.06.65-3.71-1.44-3.71-1.44a2.86 2.86 0 0 0-1.22-1.58c-1-.66.08-.65.08-.65a2.31 2.31 0 0 1 1.68 1.11 2.37 2.37 0 0 0 3.2.89 2.33 2.33 0 0 1 .7-1.44c-2.44-.27-5-1.19-5-5.32a4.15 4.15 0 0 1 1.11-2.91 3.78 3.78 0 0 1 .11-2.84s.93-.29 3 1.1a10.68 10.68 0 0 1 5.5 0c2.1-1.39 3-1.1 3-1.1a3.78 3.78 0 0 1 .11 2.84A4.15 4.15 0 0 1 19 11.2c0 4.14-2.58 5.05-5 5.32a2.5 2.5 0 0 1 .75 2v2.95c0 .35.2.63.75.52A10.8 10.8 0 0 0 23 11.77 10.89 10.89 0 0 0 12 1"
+                        data-name="github"></path>
+                </g>
+            </g>
         </svg>
-      </button>
+    </a>
+    <!-- لوگو و متن در بالا سمت راست -->
+    <div class="app-logo">
+        <div class="app-logo-icon">
+            <img src="../icons/nevis-logo.png" alt="لوگو نویس" class="app-logo-img" />
+        </div>
+        <span class="app-logo-text">نویس</span>
     </div>
-    <div class="modal-body">
-      <div class="input-group">
-        <label for="siteUrl">آدرس سایت (URL)</label>
-        <input
-          type="text"
-          id="siteUrl"
-          placeholder="example.com یا https://example.com"
-          dir="ltr"
-        />
-        <span class="error-message" id="urlError">لطفاً یک آدرس معتبر وارد کنید</span>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="modal-btn modal-btn-secondary" id="modal-cancel-btn">
-        انصراف
-      </button>
-      <button class="modal-btn modal-btn-primary" id="addSiteBtn">
-        <span id="addBtnText">افزودن</span>
-        <span class="loading-spinner" id="loadingSpinner"></span>
-      </button>
-    </div>
-  </div>
-</div>
 
-<script src="setting.js"></script>
+    <div class="bg-image"></div>
+
+    <div class="glass-card">
+        <input type="radio" name="plan" id="glass-silver" class="tab-input" checked />
+        <input type="radio" name="plan" id="glass-platinum" class="tab-input" />
+
+        <div class="glass-radio-group">
+            <label for="glass-silver">فونت</label>
+            <label for="glass-platinum">RTL</label>
+            <div class="glass-glider"></div>
+        </div>
+
+        <div class="card-body">
+
+            <!-- تب فونت -->
+            <div class="tab-panel" id="panel-font">
+
+                <!-- بخش سایت‌های فعال -->
+                <div class="font-section">
+                    <h3>اعمال فونت روی این سایت‌ها:</h3>
+                    <div class="badges-container" id="active-sites">
+
+                        <div class="site-badge" data-url="chatgpt.com" title="ChatGPT">
+                            <img src="../icons/logos/gpt-icon.ico" class="badge-logo" alt="ChatGPT" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="site-badge" data-url="claude.ai" title="Claude">
+                            <img src="../icons/logos/claude-logo.svg" class="badge-logo" alt="Claude" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="site-badge" data-url="gemini.google.com" title="Google Gemini">
+                            <img src="../icons/logos/gemini_logo.svg" class="badge-logo" alt="Gemini" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="site-badge" data-url="aistudio.google.com" title="AI Studio">
+                            <img src="../icons/logos/logo_ai_studio.png" class="badge-logo" alt="AI Studio" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="site-badge" data-url="deepseek.com" title="DeepSeek">
+                            <img src="../icons/logos/deep-seek-icon.svg" class="badge-logo" alt="DeepSeek" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="site-badge" data-url="grok.com" title="Grok">
+                            <img src="../icons/logos/grok-icon.svg" class="badge-logo" alt="Grok" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="site-badge" data-url="mistral.ai" title="Mistral">
+                            <img src="../icons/logos/mistral-logo.png" class="badge-logo" alt="Mistral" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="site-badge" data-url="arena.ai" title="Arena">
+                            <img src="../icons/logos/arena-icon.svg" class="badge-logo" alt="Arena" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="site-badge" data-url="z.ai" title="Z AI">
+                            <img src="../icons/logos/z-ai-logo.svg" class="badge-logo" alt="Z AI" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="site-badge" data-url="notebooklm.google.com" title="NotebookLM">
+                            <img src="../icons/logos/notbooklm-logo.svg" class="badge-logo" alt="NotebookLM" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="site-badge" data-url="qwen.ai" title="Qwen">
+                            <img src="../icons/logos/qwen-icon.png" class="badge-logo" alt="Qwen" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="site-badge" data-url="perplexity.ai" title="Perplexity">
+                            <img src="../icons/logos/perplexity-icon.png" class="badge-logo" alt="Perplexity" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="site-badge" data-url="copilot.microsoft.com" title="Copilot">
+                            <img src="../icons/logos/copliot-logo.svg" class="badge-logo" alt="Copilot" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="site-badge" data-url="google.com" title="Google">
+                            <img src="../icons/logos/google-icon.svg" class="badge-logo" alt="Google" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="site-badge" data-url="wikipedia.org" title="Wikipedia">
+                            <img src="../icons/logos/wikipedia-icon.png" class="badge-logo" alt="Wikipedia" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="site-badge" data-url="linkedin.com" title="Linkedin">
+                            <img src="../icons/logos/linkdin-icon.svg" class="badge-logo" alt="Linkedin" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="site-badge" data-url="bing.com" title="Bing">
+                            <img src="../icons/logos/bing-icon.svg" class="badge-logo" alt="Bing" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="site-badge" data-url="mail.google.com" title="Gmail">
+                            <img src="../icons/logos/gmail-icon.png" class="badge-logo" alt="Gmail" />
+                            <button class="badge-action-btn btn-remove" data-target="removed-sites" title="حذف">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- دکمه افزودن سایت جدید -->
+                        <button class="add-site-btn" id="open-add-site-modal" title="افزودن سایت دلخواه">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- بخش سایت‌های حذف شده -->
+                <div class="font-section" style="margin-top: 10px;">
+                    <h3 style="color: rgba(255,255,255,0.5);">بدون اعمال فونت </h3>
+                    <div class="badges-container" id="removed-sites">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- تب RTL -->
+            <div class="tab-panel" id="panel-rtl">
+                <div class="grid-container">
+
+                    <div class="grid-box" data-site="aistudio.google.com">
+                        <img src="../icons/logos/logo_ai_studio.png" alt="AI Studio" />
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-input rtl-toggle" data-site="aistudio.google.com" />
+                            <span class="toggle-track">
+                                <span class="toggle-thumb">
+                                    <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="grid-box" data-site="deepseek.com">
+                        <img src="../icons/logos/deep-seek-icon.svg" alt="DeepSeek" />
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-input rtl-toggle" data-site="deepseek.com" />
+                            <span class="toggle-track">
+                                <span class="toggle-thumb">
+                                    <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="grid-box" data-site="claude.ai">
+                        <img src="../icons/logos/claude-logo.svg" alt="Claude" />
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-input rtl-toggle" data-site="claude.ai" />
+                            <span class="toggle-track">
+                                <span class="toggle-thumb">
+                                    <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="grid-box" data-site="chatgpt.com">
+                        <img src="../icons/logos/gpt-icon.ico" alt="ChatGPT" />
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-input rtl-toggle" data-site="chatgpt.com" />
+                            <span class="toggle-track">
+                                <span class="toggle-thumb">
+                                    <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="grid-box" data-site="qwen.ai">
+                        <img src="../icons/logos/qwen-icon.png" alt="Qwen" />
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-input rtl-toggle" data-site="qwen.ai" />
+                            <span class="toggle-track">
+                                <span class="toggle-thumb">
+                                    <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="grid-box" data-site="gemini.google.com">
+                        <img src="../icons/logos/gemini_logo.svg" alt="Gemini" />
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-input rtl-toggle" data-site="gemini.google.com" />
+                            <span class="toggle-track">
+                                <span class="toggle-thumb">
+                                    <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="grid-box" data-site="grok.com">
+                        <img src="../icons/logos/grok-icon.svg" alt="Grok" />
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-input rtl-toggle" data-site="grok.com" />
+                            <span class="toggle-track">
+                                <span class="toggle-thumb">
+                                    <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="grid-box" data-site="z.ai">
+                        <img src="../icons/logos/z-ai-logo.svg" alt="Z AI" />
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-input rtl-toggle" data-site="z.ai" />
+                            <span class="toggle-track">
+                                <span class="toggle-thumb">
+                                    <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+
+
+                    <div class="grid-box" data-site="arena.ai">
+                        <img src="../icons/logos/arena-icon.svg" alt="Arena" />
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-input rtl-toggle" data-site="arena.ai" />
+                            <span class="toggle-track">
+                                <span class="toggle-thumb">
+                                    <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="grid-box" data-site="perplexity.ai">
+                        <img src="../icons/logos/perplexity-icon.png" alt="Perplexity" />
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-input rtl-toggle" data-site="perplexity.ai" />
+                            <span class="toggle-track">
+                                <span class="toggle-thumb">
+                                    <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="grid-box" data-site="mistral.ai">
+                        <img src="../icons/logos/mistral-logo.png" alt="Mistral" />
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-input rtl-toggle" data-site="mistral.ai" />
+                            <span class="toggle-track">
+                                <span class="toggle-thumb">
+                                    <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="grid-box" data-site="notebooklm.google.com">
+                        <img src="../icons/logos/notbooklm-logo.svg" alt="NotebookLM" />
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-input rtl-toggle" data-site="notebooklm.google.com" />
+                            <span class="toggle-track">
+                                <span class="toggle-thumb">
+                                    <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- بخش زیرین کارت شیشه‌ای (خارج از کارت) -->
+    <div class="outer-footer">
+        <span>تقدیم به همه فارسی زبانان</span>
+        <svg class="heart-pulse" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- گرادیانت شیشه‌ای قلب -->
+                <linearGradient id="glassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.65" />
+                    <stop offset="40%" stop-color="#a8d8ff" stop-opacity="0.45" />
+                    <stop offset="100%" stop-color="#4a90e2" stop-opacity="0.75" />
+                </linearGradient>
+
+                <!-- حاشیه شیشه‌ای -->
+                <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+                    <stop offset="50%" stop-color="#88c8ff" stop-opacity="0.5" />
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0.7" />
+                </linearGradient>
+
+                <!-- بازتاب نور -->
+                <radialGradient id="highlight" cx="35%" cy="25%" r="30%">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                </radialGradient>
+
+                <!-- فیلتر سایه داخلی ملایم -->
+                <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="6" />
+                    <feOffset dx="0" dy="8" result="offsetblur" />
+                    <feComponentTransfer>
+                        <feFuncA type="linear" slope="0.4" />
+                    </feComponentTransfer>
+                    <feMerge>
+                        <feMergeNode />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <!-- قلب شیشه‌ای با سایه بدون پس‌زمینه رنگی -->
+            <g filter="url(#shadow)">
+                <path d="M200,340 
+               C200,340 60,240 60,150 
+               C60,90 110,60 160,90 
+               C185,105 200,130 200,150 
+               C200,130 215,105 240,90 
+               C290,60 340,90 340,150 
+               C340,240 200,340 200,340 Z" fill="url(#glassGrad)" stroke="url(#borderGrad)" stroke-width="2" />
+            </g>
+
+            <!-- بازتاب نور روی قلب -->
+            <path d="M200,340 
+             C200,340 60,240 60,150 
+             C60,90 110,60 160,90 
+             C185,105 200,130 200,150 
+             C200,130 215,105 240,90 
+             C290,60 340,90 340,150 
+             C340,240 200,340 200,340 Z" fill="url(#highlight)" />
+
+            <!-- نقاط درخشان شیشه -->
+            <ellipse cx="140" cy="130" rx="25" ry="15" fill="#ffffff" opacity="0.5" transform="rotate(-30 140 130)" />
+            <ellipse cx="125" cy="155" rx="10" ry="6" fill="#ffffff" opacity="0.4" transform="rotate(-30 125 155)" />
+        </svg>
+    </div>
+
+    <!-- مودال افزودن سایت -->
+    <div class="modal-overlay" id="addSiteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>افزودن سایت دلخواه</h3>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="siteUrl">آدرس سایت (URL)</label>
+                    <input type="text" id="siteUrl" placeholder="example.com یا https://example.com" dir="ltr" />
+                    <span class="error-message" id="urlError">لطفاً یک آدرس معتبر وارد کنید</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" id="modal-cancel-btn">
+                    انصراف
+                </button>
+                <button class="modal-btn modal-btn-primary" id="addSiteBtn">
+                    <span id="addBtnText">افزودن</span>
+                    <span class="loading-spinner" id="loadingSpinner"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="setting.js"></script>
 </body>
+
 </html>
