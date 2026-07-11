@@ -317,7 +317,7 @@ async function applySelectedFont(fontValue) {
     if (tab) {
       await sendMessageToTab(tab, {
         action: 'applyFont',
-        fontName: POPUP_FONTS[fontValue].name || fontValue, 
+        fontName: POPUP_FONTS[fontValue].name || fontValue,
         fontFaceCss: POPUP_FONTS[fontValue].fontFaceCss,
         overrideCss: buildOverrideCss(POPUP_FONTS[fontValue].name || fontValue),
       });
@@ -481,7 +481,7 @@ async function filterLogosByRtlSettings() {
 
     if (activeCurrentSiteBox) {
       boxesToShow.push(activeCurrentSiteBox);
-      
+
       const remainingBoxes = enabledBoxes.filter(box => box !== activeCurrentSiteBox);
       boxesToShow = [...boxesToShow, ...remainingBoxes.slice(0, 8)];
     } else {
@@ -515,10 +515,10 @@ function setupLogoNavigation() {
   };
 
   document.querySelectorAll('.logo-glass-box').forEach(box => {
-    box.addEventListener('click', function(e) {
+    box.addEventListener('click', function (e) {
       const domain = this.getAttribute('data-domain');
       const url = domainToUrl[domain];
-      
+
       if (url) {
         chrome.tabs.create({ url: url });
       }
@@ -627,6 +627,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   const uploadChangeBtn = document.getElementById('upload-change-btn');
 
   uploadContent.addEventListener('click', () => fontFileInput.click());
+
+  const accordionPanel = document.getElementById('accordion-panel');
+  accordionPanel.addEventListener('transitionend', (e) => {
+    if (e.propertyName === 'max-height' && !accordionPanel.classList.contains('open')) {
+      const isFirefox = typeof InstallTrigger !== 'undefined' || navigator.userAgent.includes("Firefox");
+      if (isFirefox) {
+        const originalHeight = document.body.style.height;
+        document.body.style.height = (document.body.offsetHeight - 1) + 'px';
+
+        document.body.offsetHeight;
+        document.body.style.height = originalHeight;
+      }
+    }
+  });
 
   uploadChangeBtn.addEventListener('click', e => {
     e.stopPropagation();
