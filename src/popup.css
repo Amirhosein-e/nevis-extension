@@ -75,7 +75,7 @@ header {
   padding: 20px;
   /* background: linear-gradient(160deg, #0749b5 0%, rgba(9, 13, 22, 0.95) 100%); */
   backdrop-filter: blur(8px);
-  background: rgb(1 11 55) !important;
+  background: rgb(0 18 51) !important;
   border-bottom: 1px solid #000b1e !important;
 }
 
@@ -88,7 +88,7 @@ header {
 .header-icon {
   position: relative;
   width: 34px;
-  height: 34px;
+  height: 30px;
   border-radius: var(--radius-sm);
   display: grid;
   place-items: center;
@@ -96,7 +96,7 @@ header {
 
 .header-logo-img {
   width: 40px;
-  height: 30px;
+  height: 29px;
   object-fit: contain;
   z-index: 2;
 }
