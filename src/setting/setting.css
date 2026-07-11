@@ -196,6 +196,8 @@ body {
     gap: 20px;
     padding: 10px;
     overflow-y: auto;
+
+    scrollbar-width: none;
 }
 #panel-font::-webkit-scrollbar {
     display: none;
@@ -627,6 +629,8 @@ body {
     align-items: center;
     gap: 8px;
     z-index: 10;
+    -webkit-user-select: none;
+    -moz-user-select: none;
     user-select: none;
     pointer-events: none;
 }
@@ -654,7 +658,7 @@ body {
     margin-right: 3px;
     
     background: linear-gradient(139deg, rgb(219, 242, 248) 30%, rgb(130, 150, 165) 100%);
-    background-clip: text;
+    -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent;
     display: inline-block;
     

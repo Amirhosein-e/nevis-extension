@@ -118,7 +118,7 @@ header {
   letter-spacing: -0.01em;
   margin-right: 3px;
   background: linear-gradient(139deg, rgb(219 242 248) 30%, rgb(73 85 93) 100%) text;
-  background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }
@@ -287,13 +287,14 @@ main {
 
 .custom-select {
   width: 100%;
-  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   background: rgba(10, 11, 16, 0.8);
   border: 1px solid var(--border-light);
   color: var(--text-primary);
   font-family: inherit;
   font-size: 12px;
-  padding: 10px 14px 10px 38px; /* Left padded for custom indicator arrow */
+  padding: 10px 14px 10px 38px;
   border-radius: var(--radius-sm);
   outline: none;
   cursor: pointer;
@@ -468,7 +469,10 @@ main {
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-smooth);
+  -webkit-user-select: none;
+  -moz-user-select: none;
   user-select: none;
+  
 }
 
 .accordion-trigger:hover {
@@ -505,7 +509,7 @@ main {
 }
 
 .accordion-panel.open {
-  max-height: 2500px;
+  max-height: 300px;
   opacity: 1;
 }
 
