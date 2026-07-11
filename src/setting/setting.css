@@ -637,8 +637,8 @@ body {
 
 .app-logo-icon {
     position: relative;
-    width: 34px;
-    height: 34px;
+    width: 40px;
+    height: 32px;
     display: grid;
     place-items: center;
 }
