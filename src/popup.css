@@ -112,7 +112,7 @@ header {
 }
 
 .header-text h1 {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -121,6 +121,7 @@ header {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
+  filter: drop-shadow(rgba(255, 255, 255, 0.15) 0px 2px 8px);
 }
 
 main {

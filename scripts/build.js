@@ -18,14 +18,12 @@
 const fs = require('fs');
 const path = require('path');
 
-// Base paths
 const ROOT_DIR = path.resolve(__dirname, '..');
 const SRC_DIR = path.join(ROOT_DIR, 'src');
 const MANIFESTS_DIR = path.join(ROOT_DIR, 'manifests');
 const BUILD_DIR = path.join(ROOT_DIR, 'build');
 
-// If you later need browser-specific files
-// (e.g. a different content.js for Firefox), create these
+
 // directories and the script will overlay them onto src/.
 const OVERLAY_DIRS = {
   chrome: path.join(ROOT_DIR, 'src-chrome'),
@@ -34,7 +32,6 @@ const OVERLAY_DIRS = {
 
 const TARGETS = ['chrome', 'firefox'];
 
-// Utility functions
 
 function log(msg) {
   console.log(`[build] ${msg}`);
@@ -81,7 +78,6 @@ function writeJson(filePath, data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n', 'utf-8');
 }
 
-// Build a single target (chrome or firefox)
 
 function buildTarget(target) {
   if (!TARGETS.includes(target)) {
@@ -100,22 +96,18 @@ function buildTarget(target) {
     fail(`Manifest file not found: ${manifestPath}`);
   }
 
-  // 1. Clean previous output
   rimraf(outDir);
   fs.mkdirSync(outDir, { recursive: true });
 
-  // 2. Copy shared code
   copyDir(SRC_DIR, outDir);
   log(`  Shared code copied from src/.`);
 
-  // 3. Apply browser-specific overlay (if directory exists)
   const overlayDir = OVERLAY_DIRS[target];
   if (overlayDir && fs.existsSync(overlayDir)) {
     copyDir(overlayDir, outDir);
     log(`  Browser-specific files from ${path.basename(overlayDir)}/ applied to output.`);
   }
 
-  // 4. Copy and validate target-specific manifest
   const manifestData = readJson(manifestPath);
 
   if (!manifestData.name || !manifestData.version) {
@@ -128,7 +120,6 @@ function buildTarget(target) {
   log(`Build "${target}" completed successfully → ${path.relative(ROOT_DIR, outDir)}`);
 }
 
-// Main execution
 
 function main() {
   const arg = process.argv[2];
