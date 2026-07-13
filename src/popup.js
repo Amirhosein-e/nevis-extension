@@ -54,7 +54,6 @@ const FONT_ELEMENTS = [
   'pre', 'option', 'dt', 'dd', 'figcaption', 'mark', 'small', 'strong',
 ];
 
-// ─── توابع کاربردی و مدیریت استایل ──────────────────────────────────────────
 
 function buildOverrideCss(fontName) {
   const selectors = FONT_ELEMENTS.map(tag => `${tag}:not([class*="symbol"])`);
@@ -98,7 +97,6 @@ async function sendMessageToTab(tab, message) {
   }
 }
 
-// ─── مدیریت ذخیره‌سازی محلی (Storage) ───────────────────────────────────────
 
 async function loadCustomFonts() {
   const { customFonts = [] } = await chrome.storage.local.get('customFonts');
@@ -118,7 +116,6 @@ function registerCustomFonts(customFonts) {
   });
 }
 
-// ─── مدیریت رابط کاربری (UI) ────────────────────────────────────────────────
 
 function closeAccordion() {
   document.getElementById('accordion-trigger').classList.remove('open');
@@ -179,7 +176,6 @@ function renderCustomFonts(customFonts) {
   });
 }
 
-// ─── مدیریت بخش فرم افزودن فونت ──────────────────────────────────────────
 
 function showAddFontCard() {
   document.getElementById('font-card').style.display = 'none';
@@ -233,8 +229,6 @@ function handleFileSelected(file) {
   }
   nameInput.focus();
 }
-
-// ─── منطق افزودن و حذف فونت سفارشی ──────────────────────────────────────────
 
 async function handleAddConfirm() {
   const nameInput = document.getElementById('font-name-input');
@@ -306,8 +300,6 @@ function fileToDataUrl(file) {
     reader.readAsDataURL(file);
   });
 }
-
-// ─── اعمال فونت و راست‌چین ────────────────────────────────────────────────
 
 async function applySelectedFont(fontValue) {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -598,7 +590,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupLogoNavigation();
 
 
-  // رویدادهای آکاردئون
   document.getElementById('accordion-trigger').addEventListener('click', toggleAccordion);
   document.getElementById('font-list').addEventListener('click', handleFontItemClick);
 
@@ -612,7 +603,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('toggle-rtl').addEventListener('change', handleRtlToggle);
 
-  // باز کردن صفحه تنظیمات در تب جدید
   document.getElementById('setting-btn').addEventListener('click', () => {
     chrome.tabs.create({ url: chrome.runtime.getURL('setting/setting.html') });
   });
@@ -620,7 +610,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('back-btn').addEventListener('click', hideAddFontCard);
   document.getElementById('add-confirm-btn').addEventListener('click', handleAddConfirm);
 
-  // رویدادهای انتخاب فایل
   const uploadZone = document.getElementById('upload-zone');
   const fontFileInput = document.getElementById('font-file-input');
   const uploadContent = document.getElementById('upload-content');
@@ -656,7 +645,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     handleFileSelected(e.target.files[0]);
   });
 
-  // درگ و دراپ فایل
   uploadZone.addEventListener('dragover', e => {
     e.preventDefault();
     uploadZone.classList.add('drag-over');

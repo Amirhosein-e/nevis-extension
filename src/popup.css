@@ -14,7 +14,6 @@
   font-display: swap;
 }
 
-/* ─── design tokens & css variables ─────────────────── */
 :root {
   --bg-dark: #090a0f;
   --bg-card: rgba(17, 22, 34, 0.75);
@@ -37,7 +36,6 @@
   --transition-smooth: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ─── reset & foundational styles ──────────────────── */
 *,
 *::before,
 *::after {
@@ -139,7 +137,6 @@ main {
   position: relative;
   overflow: hidden;
   
-  /* افکت شیشه ای متناسب با تم تاریک */
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -170,7 +167,7 @@ main {
   content: '';
   position: absolute;
   top: 0;
-  right: 0; /* تغییر از left به right برای RTL */
+  right: 0;
   width: 1px;
   height: 100%;
   background: linear-gradient(
@@ -246,7 +243,6 @@ main {
   padding-right: 13px;
 }
 
-/* ─── interactions: reset button ──────────────────── */
 #setting-btn {
   display: flex;
   align-items: center;
@@ -280,7 +276,6 @@ main {
   transform: rotate(-45deg);
 }
 
-/* ─── custom select element ────────────────────────── */
 .select-wrapper {
   position: relative;
   width: 100%;
@@ -334,7 +329,6 @@ main {
   color: var(--accent-primary);
 }
 
-/* ─── custom toggle switch ─────────────────────────── */
 .toggle-switch {
   position: relative;
   display: inline-block;
@@ -380,7 +374,6 @@ main {
   transition: opacity var(--transition-smooth);
 }
 
-/* Checked States */
 .toggle-input:checked + .toggle-track {
   background: linear-gradient(336deg, #25b3ff 0%, #0e61b3 100%);
   border-color: transparent;
@@ -396,7 +389,6 @@ main {
   opacity: 1;
 }
 
-/* Active pressed state micro-interaction */
 .toggle-switch:active .toggle-track .toggle-thumb {
   width: 22px;
 }
@@ -514,7 +506,6 @@ main {
   opacity: 1;
 }
 
-/* ─── font list inside accordion ───────────────────── */
 .font-list {
   list-style: none;
 }
@@ -541,8 +532,6 @@ main {
   border-right-color: var(--accent-primary);
   font-weight: 700;
 }
-
-/* ─── کارت افزودن فونت ─────────────────────────────── */
 
 .add-font-card {
   display: flex;
@@ -685,7 +674,6 @@ main {
   background: rgba(14, 117, 212, 0.12);
 }
 
-/* ─── اینپوت نام فونت ──────────────────────────────── */
 .input-group {
   display: flex;
   flex-direction: column;
@@ -919,7 +907,6 @@ main {
   }
 }
 
-/* اعمال انیمیشن روی کارت فعال */
 .logo-glass-box.active {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.3);

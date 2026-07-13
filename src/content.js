@@ -79,8 +79,8 @@ async function getSiteFontSettings() {
 
   // پیدا کردن domain متناظر در siteSettings
   const matchedDomain = Object.keys(siteSettings).find(domain =>{
-    if(domain == 'google.com'){
-      return hostname === domain;
+    if(domain == 'google.com' || domain == 'www.google.com'){
+      return true;
     }
     return hostname === domain || hostname.endsWith(domain);
   });
@@ -97,7 +97,6 @@ async function getSiteFontSettings() {
   };
 }
 
-// ─── ساخت CSS اعمال فونت ─────────────────────────────────────────────────────
 
 async function buildOverrideCss(fontName) {
   const settings = await getSiteFontSettings();
@@ -118,7 +117,6 @@ async function buildOverrideCss(fontName) {
   return `${finalSelector} { font-family: '${fontName}', sans-serif !important; }`;
 }
 
-// ─── توابع کمکی DOM و اعمال استایل ──────────────────────────────────────────
 
 function getStyleElement(id) {
   let el = document.getElementById(id);
@@ -183,8 +181,7 @@ function applyRTL(isActive) {
       direction: rtl !important;
       text-align: right !important;
     }
-    .ds-markdown .ds-scroll-area {
-      direction: ltr !important; 
+    .ds-markdown .ds-scroll-area { 
       transform: translateX(80px);
     }
     .ds-markdown .ds-scroll-area table {
@@ -243,6 +240,10 @@ function applyRTL(isActive) {
       text-align: right !important;
       direction: rtl !important;
     }
+    ms-part-renderer{
+      text-align: right !important;
+      direction: rtl !important;
+    }
   `;
 
   const ChatgptRtlCss = `
@@ -279,6 +280,10 @@ function applyRTL(isActive) {
       text-align: left !important;
     }
     div[role="textbox"] p{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+    button.text-text-500[aria-expanded="true"]{
       direction: rtl !important;
       text-align: right !important;
     }
@@ -503,7 +508,6 @@ function applyRTL(isActive) {
   }
 }
 
-// ─── شنونده پیام‌ها و مقداردهی اولیه ────────────────────────────────────────
 
 if (!window.__fontChangerListenerRegistered) {
   window.__fontChangerListenerRegistered = true;

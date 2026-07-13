@@ -48,10 +48,8 @@
 
         <div class="card-body">
 
-            <!-- تب فونت -->
             <div class="tab-panel" id="panel-font">
 
-                <!-- بخش سایت‌های فعال -->
                 <div class="font-section">
                     <h3>اعمال فونت روی این سایت‌ها:</h3>
                     <div class="badges-container" id="active-sites">
@@ -287,7 +285,6 @@
                             </button>
                         </div>
 
-                        <!-- دکمه افزودن سایت جدید -->
                         <button class="add-site-btn" id="open-add-site-modal" title="افزودن سایت دلخواه">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -299,7 +296,6 @@
                     </div>
                 </div>
 
-                <!-- بخش سایت‌های حذف شده -->
                 <div class="font-section" style="margin-top: 10px;">
                     <h3 style="color: rgba(255,255,255,0.5);">بدون اعمال فونت </h3>
                     <div class="badges-container" id="removed-sites">
@@ -309,7 +305,6 @@
 
             </div>
 
-            <!-- تب RTL -->
             <div class="tab-panel" id="panel-rtl">
                 <div class="grid-container">
 
@@ -515,32 +510,27 @@
 
     </div>
 
-    <!-- بخش زیرین کارت شیشه‌ای (خارج از کارت) -->
     <div class="outer-footer">
         <span>تقدیم به همه فارسی زبانان</span>
         <svg class="heart-pulse" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
             <defs>
-                <!-- گرادیانت شیشه‌ای قلب -->
                 <linearGradient id="glassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
                     <stop offset="0%" stop-color="#ffffff" stop-opacity="0.65" />
                     <stop offset="40%" stop-color="#a8d8ff" stop-opacity="0.45" />
                     <stop offset="100%" stop-color="#4a90e2" stop-opacity="0.75" />
                 </linearGradient>
 
-                <!-- حاشیه شیشه‌ای -->
                 <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
                     <stop offset="50%" stop-color="#88c8ff" stop-opacity="0.5" />
                     <stop offset="100%" stop-color="#ffffff" stop-opacity="0.7" />
                 </linearGradient>
 
-                <!-- بازتاب نور -->
                 <radialGradient id="highlight" cx="35%" cy="25%" r="30%">
                     <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
                     <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
                 </radialGradient>
 
-                <!-- فیلتر سایه داخلی ملایم -->
                 <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
                     <feGaussianBlur in="SourceAlpha" stdDeviation="6" />
                     <feOffset dx="0" dy="8" result="offsetblur" />
@@ -554,7 +544,6 @@
                 </filter>
             </defs>
 
-            <!-- قلب شیشه‌ای با سایه بدون پس‌زمینه رنگی -->
             <g filter="url(#shadow)">
                 <path d="M200,340 
                C200,340 60,240 60,150 
@@ -565,7 +554,6 @@
                C340,240 200,340 200,340 Z" fill="url(#glassGrad)" stroke="url(#borderGrad)" stroke-width="2" />
             </g>
 
-            <!-- بازتاب نور روی قلب -->
             <path d="M200,340 
              C200,340 60,240 60,150 
              C60,90 110,60 160,90 
@@ -574,13 +562,11 @@
              C290,60 340,90 340,150 
              C340,240 200,340 200,340 Z" fill="url(#highlight)" />
 
-            <!-- نقاط درخشان شیشه -->
             <ellipse cx="140" cy="130" rx="25" ry="15" fill="#ffffff" opacity="0.5" transform="rotate(-30 140 130)" />
             <ellipse cx="125" cy="155" rx="10" ry="6" fill="#ffffff" opacity="0.4" transform="rotate(-30 125 155)" />
         </svg>
     </div>
 
-    <!-- مودال افزودن سایت -->
     <div class="modal-overlay" id="addSiteModal">
         <div class="modal-content">
             <div class="modal-header">

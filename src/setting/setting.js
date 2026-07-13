@@ -1,17 +1,13 @@
-// ===== متغیرهای سراسری =====
 const trashIcon = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
 const plusIcon = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>`;
 
-// ===== توابع ذخیره و بازیابی اطلاعات =====
 function saveSitesToStorage() {
     const siteSettings = {};
 
-    // سایت‌های فعال
     document.querySelectorAll('#active-sites .site-badge').forEach(badge => {
         siteSettings[badge.getAttribute('data-url')] = true;
     });
 
-    // سایت‌های غیرفعال (مستثنی شده)
     document.querySelectorAll('#removed-sites .site-badge').forEach(badge => {
         siteSettings[badge.getAttribute('data-url')] = false;
     });
@@ -54,19 +50,16 @@ async function loadSitesFromStorage() {
                 }
             }
         } else if (isActive) {
-            // سایت دستی که قبلاً اضافه شده
             renderCustomBadge(url);
         }
     }
 }
 
-// ===== توابع رابط کاربری (به صورت سراسری) =====
 window.moveSite = function (buttonElement, targetListId) {
     const badge = buttonElement.closest('.site-badge');
     const targetList = document.getElementById(targetListId);
     const isCustomSite = badge.getAttribute('data-custom') === 'true';
 
-    // اگر سایت دستی اضافه شده بود و کاربر حذفش کرد، کاملاً پاکش کن
     if (targetListId === 'removed-sites' && isCustomSite) {
         badge.style.transform = 'scale(0)';
         setTimeout(() => {
@@ -190,7 +183,6 @@ window.renderCustomBadge = async function (domain) {
     removeBtn.className = 'badge-action-btn btn-remove';
     removeBtn.title = 'حذف';
     removeBtn.innerHTML = trashIcon;
-    // نکته: onclick دستی حذف شد چون Event Delegation در پایین انجام می‌شود
     newBadge.appendChild(removeBtn);
 
     const activeSites = document.getElementById('active-sites');
@@ -248,14 +240,9 @@ async function addNewSite() {
     }
 }
 
-// ===== رویدادها (Event Listeners) =====
 document.addEventListener('DOMContentLoaded', async () => {
-    // بارگذاری تنظیمات فونت‌ها
     await loadSitesFromStorage();
 
-    // ------------------------------------------
-    // رویدادهای مودال
-    // ------------------------------------------
     document.getElementById('open-add-site-modal').addEventListener('click', openAddSiteModal);
     document.getElementById('modal-cancel-btn').addEventListener('click', closeAddSiteModal);
     document.getElementById('addSiteBtn').addEventListener('click', addNewSite);
@@ -268,10 +255,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('urlError').classList.remove('active');
     });
 
-    // ------------------------------------------
-    // سیستم یکپارچه برای کلیک‌های حذف و اضافه
-    // (Event Delegation)
-    // ------------------------------------------
     document.getElementById('active-sites').addEventListener('click', (e) => {
         const btn = e.target.closest('.badge-action-btn');
         if (btn) {
@@ -286,17 +269,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // ------------------------------------------
-    // منطق ذخیره و بازیابی تب RTL
-    // ------------------------------------------
     const rtlToggles = document.querySelectorAll('.rtl-toggle');
 
-    // خواندن مقادیر ذخیره شده
     chrome.storage.local.get('rtlSettings', ({ rtlSettings = {} }) => {
         rtlToggles.forEach(toggle => {
             const site = toggle.getAttribute('data-site');
 
-            // اعمال وضعیت ذخیره شده
             if (rtlSettings[site] !== undefined) {
                 toggle.checked = rtlSettings[site];
             } else {
@@ -306,7 +284,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 chrome.storage.local.set({ rtlSettings });
             }
 
-            // ذخیره هنگام تغییر سوئیچ
             toggle.addEventListener('change', (e) => {
                 rtlSettings[site] = e.target.checked;
                 chrome.storage.local.set({ rtlSettings });

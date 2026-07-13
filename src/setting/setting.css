@@ -169,7 +169,7 @@ body {
     width: 100%;
     flex-grow: 1;
     position: relative;
-    height: calc(100% - 70px); /* بازگشت به مقدار اصلی */
+    height: calc(100% - 70px);
 }
 .tab-panel {
     display: none;
@@ -187,7 +187,7 @@ body {
         transform: translateY(0);
     }
 }
-/* ------------------ استایل‌های تب فونت ------------------ */
+
 #glass-silver:checked~.card-body #panel-font {
     display: flex;
     flex-direction: column;
@@ -307,7 +307,7 @@ body {
     height: 24px;
     color: rgba(255, 255, 255, 0.8);
 }
-/* مودال افزودن سایت */
+
 .modal-overlay {
     display: none;
     position: fixed;
@@ -473,7 +473,7 @@ body {
         transform: rotate(360deg);
     }
 }
-/* استایل Favicon پیش‌فرض */
+
 .default-favicon {
     width: 28px;
     height: 28px;
@@ -486,7 +486,7 @@ body {
     font-weight: bold;
     font-size: 14px;
 }
-/* ------------------ استایل‌های تب RTL ------------------ */
+
 #glass-platinum:checked~.card-body #panel-rtl {
     display: block;
 }
@@ -582,7 +582,7 @@ body {
     opacity: 1;
     transform: scale(1.05);
 }
-/* ------------------ استایل‌های فوتر بیرونی (زیر کارت شیشه‌ای) ------------------ */
+
 .outer-footer {
     display: flex;
     align-items: center;
@@ -685,7 +685,7 @@ body {
     .app-logo-text {
         font-size: 20px;
     }
-    /* در صفحه‌های کوچک، برای جلوگیری از شلوغی متن را مخفی می‌کنیم */
+
     .app-logo-desc {
         display: none; 
     }
@@ -702,7 +702,7 @@ body {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   
-  /* استفاده از متغیر با مقدار پیش‌فرض ۱۰ پیکسل */
+
   border-radius: var(--radius-md, 10px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 
@@ -712,7 +712,7 @@ body {
  
   position: relative;
   overflow: hidden;
-  /* استفاده از متغیر حرکت روان با مقدار پیش‌فرض */
+
   transition: all var(--transition-smooth, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
   cursor: pointer;
 }
@@ -746,7 +746,7 @@ body {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.027);
 }
 
-/* ------------------ تنظیمات خاص موقعیت و آیکون دکمه گیت‌هاب ------------------ */
+
 .github-link {
   position: absolute;
   top: 22px;
@@ -760,7 +760,7 @@ body {
   height: 22px;
   fill: #d0d7e1 !important; 
   transition: fill 0.3s ease, filter 0.3s ease;
-  z-index: 2; /* قرارگیری بالاتر از لایه‌های افکت نوری پس‌زمینه */
+  z-index: 2;
 }
 
 .github-link:hover svg {
@@ -768,7 +768,7 @@ body {
   filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
 }
 
-/* هماهنگی با واکنش‌گرایی در نمایشگرهای کوچک‌تر */
+
 @media (max-width: 820px) {
   .github-link {
     top: 15px;
