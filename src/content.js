@@ -79,8 +79,8 @@ async function getSiteFontSettings() {
 
   // پیدا کردن domain متناظر در siteSettings
   const matchedDomain = Object.keys(siteSettings).find(domain =>{
-    if(domain == 'google.com' || domain == 'www.google.com'){
-      return true;
+    if(hostname == 'google.com' || hostname == 'www.google.com'){
+      return hostname === domain || hostname === 'www.' + domain;
     }
     return hostname === domain || hostname.endsWith(domain);
   });
@@ -243,6 +243,10 @@ function applyRTL(isActive) {
     ms-part-renderer{
       text-align: right !important;
       direction: rtl !important;
+    }
+    ms-thought-chunk{
+     text-align: left !important;
+      direction: ltr !important;
     }
   `;
 
