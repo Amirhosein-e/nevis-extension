@@ -66,22 +66,6 @@ body {
   min-height: 290px;
 }
 
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  /* background: linear-gradient(160deg, #0749b5 0%, rgba(9, 13, 22, 0.95) 100%); */
-  backdrop-filter: blur(8px);
-  background: rgb(0 18 51) !important;
-  border-bottom: 1px solid #000b1e !important;
-}
-
-.header-brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 
 .header-icon {
   position: relative;
@@ -128,8 +112,16 @@ main {
   flex-direction: column;
   gap: 12px;
   padding: 16px 20px;
+  flex: 1;
 }
 
+.header-brand {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin: 5px 2px 12px 0px;
+  gap: 8px;
+}
 .control-card {
   padding: 14px 16px;
   border-radius: var(--radius-md);
